@@ -1,0 +1,3556 @@
+Index: ../../py学习/py_study/元组的创建与删除.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/元组的创建与删除.py b/../../py学习/py_study/元组的创建与删除.py
+new file mode 100644
+--- /dev/null	(date 1724569132911)
++++ b/../../py学习/py_study/元组的创建与删除.py	(date 1724569132911)
+@@ -0,0 +1,29 @@
++#使用小括号创建元组
++t=('hello',[10,20,30],'python','world')
++print(t)
++
++#使用内置函数创建元组
++t=tuple('helloworld')
++print(t)
++
++t=tuple([10,20,30,40])
++print(t)
++
++print('10在元组中是否存在：',(10 in t))
++print('10在元组中是否不存在：',(10 not in t))
++print('最大值：',(max(t)))
++print('最小值：',(min(t)))
++print('len:',(len(t)))
++print('t.index:',t.index(10))
++print('t.count:',t.count(10))
++
++#如果元组中只有一个元素，逗号不能省
++t=(10)
++print(t,type(t))
++
++y=(10,)
++print(y,type(y))
++
++# #元组的删除
++# del t
++# print(t)
+\ No newline at end of file
+Index: ../../py学习/py_study/format的格式控制.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/format的格式控制.py b/../../py学习/py_study/format的格式控制.py
+new file mode 100644
+--- /dev/null	(date 1724894568022)
++++ b/../../py学习/py_study/format的格式控制.py	(date 1724894568022)
+@@ -0,0 +1,25 @@
++s='helloworld'
++print('{0:*<20}'.format(s)) #字符串的显示宽度为20，左对齐，空白部分使用*号填充
++print('{0:*>20}'.format(s))
++print('{0:*^20}'.format(s))
++
++#居中对齐
++print(s.center(20,'*'))
++
++#千位分隔符
++print('{0:,}'.format(987654321))
++print('{0:,}'.format(987654321.7865))
++
++#浮点数小数部分的精度
++print('{0:.2f}'.format(3.1419826))
++
++#字符串类型，表示是最大的显示长度
++print('{0:.5}'.format('helloworld'))
++
++#整数类型
++a=425
++print('二进制：{0:b},十进制：{0:d},八进制：{0:o},十六进制：{0:x}'.format(a))
++
++#浮点数类型
++b=3.1415926
++print('{0:.2f},{0:.2E},{0:.2%}'.format(b))
+\ No newline at end of file
+Index: ../../py学习/py_study/班级评分.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/班级评分.py b/../../py学习/py_study/班级评分.py
+new file mode 100644
+--- /dev/null	(date 1726374353404)
++++ b/../../py学习/py_study/班级评分.py	(date 1726374353404)
+@@ -0,0 +1,11 @@
++import openpyxl
++
++workbook = openpyxl.load_workbook('赵曼--计算机2208.xlsx')
++
++sheet = workbook['Sheet1']
++for row in sheet.rows:
++    for cell in row:
++        if cell.value==None:
++            cell.value=20
++
++workbook.save('赵曼---计算机2208.xlsx')
+\ No newline at end of file
+Index: ../../py学习/py_study_socket/.idea/inspectionProfiles/profiles_settings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study_socket/.idea/inspectionProfiles/profiles_settings.xml b/../../py学习/py_study_socket/.idea/inspectionProfiles/profiles_settings.xml
+new file mode 100644
+--- /dev/null	(date 1726052657682)
++++ b/../../py学习/py_study_socket/.idea/inspectionProfiles/profiles_settings.xml	(date 1726052657682)
+@@ -0,0 +1,6 @@
++<component name="InspectionProjectProfileManager">
++  <settings>
++    <option name="USE_PROJECT_PROFILE" value="false" />
++    <version value="1.0" />
++  </settings>
++</component>
+\ No newline at end of file
+Index: ../../py学习/py_study/匿名函数的使用.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/匿名函数的使用.py b/../../py学习/py_study/匿名函数的使用.py
+new file mode 100644
+--- /dev/null	(date 1725104384893)
++++ b/../../py学习/py_study/匿名函数的使用.py	(date 1725104384893)
+@@ -0,0 +1,28 @@
++def calc(a,b):
++    return a+b
++print(calc(10,20))
++
++#匿名函数
++s=lambda a,b:a+b
++print(type(s))
++# s表示就是一个匿名函数
++print(s(10,20))
++
++lst=[10,20,30,40,50]
++for i in range(len(lst)):
++    print(lst[i])
++print()
++
++for i in range(len(lst)):
++    result=lambda x:x[i] #根据索引取值，result值的类型是函数
++    print(result(lst))
++
++student_scores=[
++    {'name':'陈梅梅','score':98},
++    {'name':'王一一','score':95},
++    {'name':'张天乐','score':100},
++    {'name':'陈梅梅','score':65}
++]
++#对列表进行排序，排序的规则是字典中的成绩
++student_scores.sort(key=lambda s:s.get('score'),reverse=True) #降序
++print(student_scores)
+\ No newline at end of file
+Index: ../../py学习/py_study/合并字典运算符.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/合并字典运算符.py b/../../py学习/py_study/合并字典运算符.py
+new file mode 100644
+--- /dev/null	(date 1724747660056)
++++ b/../../py学习/py_study/合并字典运算符.py	(date 1724747660056)
+@@ -0,0 +1,4 @@
++d1={'a':10,'b':20}
++d2={'c':30,'d':40,'e':50}
++merged_dict=d1|d2
++print(merged_dict)
+\ No newline at end of file
+Index: ../../py学习/py_study/模拟京东购物流程.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/模拟京东购物流程.py b/../../py学习/py_study/模拟京东购物流程.py
+new file mode 100644
+--- /dev/null	(date 1724846712934)
++++ b/../../py学习/py_study/模拟京东购物流程.py	(date 1724846712934)
+@@ -0,0 +1,28 @@
++lst=[]
++for i in range(5):
++    goods=input('请输入商品的编号和商品的名称，每次只能输入一件商品')
++    lst.append(goods)
++
++for item in lst:
++    print(item)
++
++cart=[]
++while True:
++    flag=False
++    num=input('请输入要购买的商品编号：')
++    for item in lst:
++        if num==item[0:4]:
++            flag=True
++            cart.append(item)
++            print('商品已成功添加到购物车')
++            break
++    if not flag and num!='q':
++        print('商品不存在')
++
++    if num=='q':
++        break
++print('-'*50)
++print('您的购物车里已选择的商品为：')
++cart.reverse()
++for item in cart:
++    print(item)
+\ No newline at end of file
+Index: ../../py学习/py_study/UDP的发送方.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/UDP的发送方.py b/../../py学习/py_study/UDP的发送方.py
+new file mode 100644
+--- /dev/null	(date 1725976504012)
++++ b/../../py学习/py_study/UDP的发送方.py	(date 1725976504012)
+@@ -0,0 +1,18 @@
++from socket import socket,AF_INET,SOCK_DGRAM
++# 1.创建socket对象
++send_socket=socket(AF_INET,SOCK_DGRAM)
++# 2.准备发送数据
++data=input('请输入要发送的数据')
++# 3.指定接收方的IP地址和端口
++ip_port=('127.0.0.1',666)
++# 4.发送数据
++send_socket.sendto(data.encode('utf-8'),ip_port)
++
++# 5.接受来自接收方的回复数据
++recv_data,addr=send_socket.recvfrom(1024)
++print('接收到的数据为：',recv_data.decode('utf-8'))
++
++# 6.关闭
++send_socket.close()
++
++
+Index: ../../py学习/py_study_socket/.idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study_socket/.idea/misc.xml b/../../py学习/py_study_socket/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1726052657617)
++++ b/../../py学习/py_study_socket/.idea/misc.xml	(date 1726052657617)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Black">
++    <option name="sdkName" value="Python 3.12 (py_study_socket)" />
++  </component>
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (py_study_socket)" project-jdk-type="Python SDK" />
++</project>
+\ No newline at end of file
+Index: ../../py学习/py_study/模拟手机通讯录.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/模拟手机通讯录.py b/../../py学习/py_study/模拟手机通讯录.py
+new file mode 100644
+--- /dev/null	(date 1724848828366)
++++ b/../../py学习/py_study/模拟手机通讯录.py	(date 1724848828366)
+@@ -0,0 +1,7 @@
++s=set()
++for i in range(5):
++    name_number=input('请输入好友的姓名和电话：')
++    s.add(name_number)
++
++for item in s:
++    print(item)
+\ No newline at end of file
+Index: ../../py学习/py_study/search函数的使用.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/search函数的使用.py b/../../py学习/py_study/search函数的使用.py
+new file mode 100644
+--- /dev/null	(date 1724902256266)
++++ b/../../py学习/py_study/search函数的使用.py	(date 1724902256266)
+@@ -0,0 +1,14 @@
++import re
++pattern='\d\.\d+'
++s='I study Python3.11 every day Python2.7 I love you'
++
++s2='4.10Python I study every day'
++match=re.search(pattern,s2)
++print(match)
++print(match.group())
++
++lst=re.findall(pattern,s)
++lst2=re.findall(pattern,s2)
++
++print(lst)
++print(lst2)
+Index: ../../py学习/py_study/datdtime类的使用.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/datdtime类的使用.py b/../../py学习/py_study/datdtime类的使用.py
+new file mode 100644
+--- /dev/null	(date 1725668699570)
++++ b/../../py学习/py_study/datdtime类的使用.py	(date 1725668699570)
+@@ -0,0 +1,23 @@
++from datetime import datetime
++dt = datetime.now()
++print('当前系统时间为：',dt)
++
++#datetime是一个类，手动创建这个类的对象
++dt2=datetime(2028,8,8,20,8)
++print('dt所表示的日期时间：',dt2)
++print('年：',dt2.year,'月：',dt2.month,'日：',dt2.day)
++print('时：',dt2.hour,'分：',dt2.minute,'秒：',dt2.second)
++
++#比较两个datetime类型对象的大小
++labor_day=datetime(2028,5,1,0,0,0)
++nationnal_day=datetime(2028,10,1,0,0,0)
++print('2028年5月1日比10月1日早吗？',labor_day<nationnal_day)
++
++#datetime类型与字符串进行转换
++nowdt=datetime.now()
++nowdt_str=nowdt.strftime('%Y/%m/%d %H:%M:%S')
++print(nowdt_str)
++
++str_datetime='2028年8月8日 20点8分'
++dt3=datetime.strptime(str_datetime,'%Y年%m月%d日 %H点%M分')
++print(dt3)
+\ No newline at end of file
+Index: ../../py学习/py_study/二维列表的遍历与列表生成式.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/二维列表的遍历与列表生成式.py b/../../py学习/py_study/二维列表的遍历与列表生成式.py
+new file mode 100644
+--- /dev/null	(date 1724568488375)
++++ b/../../py学习/py_study/二维列表的遍历与列表生成式.py	(date 1724568488375)
+@@ -0,0 +1,17 @@
++lst=[
++    ['城市','环比','同比'],
++    ['北京',102,105],
++    ['上海',104,504],
++    ['深圳',100,39]
++]
++print(lst)
++
++#遍历二维列表使用双层for循环
++for row in lst: #行
++    for item in row: #列
++        print(item,end='\t')
++    print()
++
++#列表生成式生成一个四行五列的二维列表
++lst2=[[j for j in range(5)]for i in range(4)]
++print(lst2)
+\ No newline at end of file
+Index: ../../py学习/py_study_socket/.idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study_socket/.idea/vcs.xml b/../../py学习/py_study_socket/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1726052657685)
++++ b/../../py学习/py_study_socket/.idea/vcs.xml	(date 1726052657685)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$/../../" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: ../../py学习/py_study/输入成绩如果不正确手动抛出异常.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/输入成绩如果不正确手动抛出异常.py b/../../py学习/py_study/输入成绩如果不正确手动抛出异常.py
+new file mode 100644
+--- /dev/null	(date 1725000804471)
++++ b/../../py学习/py_study/输入成绩如果不正确手动抛出异常.py	(date 1725000804471)
+@@ -0,0 +1,8 @@
++try:
++    score=int(input('请输入分数：'))
++    if 0<=score<=100:
++        print('分数为：',score)
++    else:
++        raise Exception('分数不正确')
++except Exception as e:
++    print(e)
+\ No newline at end of file
+Index: ../../py学习/py_study/元组生成式.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/元组生成式.py b/../../py学习/py_study/元组生成式.py
+new file mode 100644
+--- /dev/null	(date 1724677180061)
++++ b/../../py学习/py_study/元组生成式.py	(date 1724677180061)
+@@ -0,0 +1,12 @@
++t=(i for i in range(1,4)) #生成器对象
++# t=tuple(t)
++# print(t)
++
++print(t.__next__())
++print(t.__next__())
++print(t.__next__())
++
++t=tuple(t)
++print(t) #空的
++
++#列表可变，元组不可变
+\ No newline at end of file
+Index: ../../py学习/py_study/格式化输出商品的名称和单价.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/格式化输出商品的名称和单价.py b/../../py学习/py_study/格式化输出商品的名称和单价.py
+new file mode 100644
+--- /dev/null	(date 1724934584010)
++++ b/../../py学习/py_study/格式化输出商品的名称和单价.py	(date 1724934584010)
+@@ -0,0 +1,14 @@
++print('编号\t\t名称\t\t\t品牌\t\t单价')
++goods_dict={'01':['电风扇','美的',500],'02':['洗衣机','TCL',1000],'03':['微波炉','老板',400]}
++for key in goods_dict.keys():
++    print(key,end='\t\t')
++    for item in goods_dict[key]:
++        print(item,end='\t\t')
++    print()
++
++print('编号\t\t\t名称\t\t\t品牌\t\t单价')
++for key in goods_dict.keys():
++    print(f'0000{key}',end='\t\t')
++    for item in goods_dict[key][:-1]:
++        print(item,end='\t\t')
++    print('￥%.2f'%(goods_dict[key][-1]))
+\ No newline at end of file
+Index: ../../py学习/py_study/match函数的使用.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/match函数的使用.py b/../../py学习/py_study/match函数的使用.py
+new file mode 100644
+--- /dev/null	(date 1724901109013)
++++ b/../../py学习/py_study/match函数的使用.py	(date 1724901109013)
+@@ -0,0 +1,15 @@
++import re #导入
++pattern='\d\.\d+'#0-9数字出现一次或多次
++s='I study Python 3.11 every day'
++match=re.match(pattern,s,re.I)
++print(match) #None
++s2='3.11Python I study every day'
++match2=re.match(pattern,s2)
++print(match2)
++
++print('匹配值的起始位置：',match2.start())
++print('匹配值的结束位置：',match2.end())
++print('匹配区间的位置元素：',match2.span())
++print('待匹配的字符串：',match2.string)
++print('匹配的数据：',match2.group())
++
+Index: ../../py学习/py_study/字符串的编码与解码.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/字符串的编码与解码.py b/../../py学习/py_study/字符串的编码与解码.py
+new file mode 100644
+--- /dev/null	(date 1724896108338)
++++ b/../../py学习/py_study/字符串的编码与解码.py	(date 1724896108338)
+@@ -0,0 +1,15 @@
++s='伟大的中国'
++#编码 str->bytes
++scode=s.encode(errors='replace') #默认是utf-8，因为utf-8中文占3个字节
++print(scode)
++
++scode_gbk=s.encode('gbk',errors='replace') #gbk中文占两个字节
++print(scode_gbk)
++
++#编码中的出错问题
++s2='耶✌'
++scode=s2.encode('gbk',errors='ignore')
++print(scode)
++
++#解码过程
++print(bytes.decode(scode_gbk,'gbk'))
+\ No newline at end of file
+Index: ../../py学习/py_study/文件的读写操作.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/文件的读写操作.py b/../../py学习/py_study/文件的读写操作.py
+new file mode 100644
+--- /dev/null	(date 1725779097991)
++++ b/../../py学习/py_study/文件的读写操作.py	(date 1725779097991)
+@@ -0,0 +1,19 @@
++def my_write():
++    # (1)(创建)打开文件
++    file=open('a.txt','w',encoding='utf-8')
++    # (2)操作文件
++    file.write('伟大的中国梦')
++    # (3)关闭
++    file.close()
++
++def my_read():
++    #(1)(创建)打开文件
++    file=open('a.txt','r',encoding='utf-8')
++    #(2)操作文件
++    s=file.read()
++    print(s)
++    file.close()
++
++if __name__=='__main__':
++    my_write()
++    my_read()
+\ No newline at end of file
+Index: ../../py学习/py_study/定义学生类录入5个学生信息存储到列表中.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/定义学生类录入5个学生信息存储到列表中.py b/../../py学习/py_study/定义学生类录入5个学生信息存储到列表中.py
+new file mode 100644
+--- /dev/null	(date 1725519943325)
++++ b/../../py学习/py_study/定义学生类录入5个学生信息存储到列表中.py	(date 1725519943325)
+@@ -0,0 +1,20 @@
++class Student:
++    def __init__(self,name,age,gender,score):
++        self.name=name
++        self.age=age
++        self.gender=gender
++        self.score=score
++
++    def info(self):
++        print(self.name,self.age,self.gender,self.score)
++
++print('请输入五位学生的信息：姓名#年龄#性别#成绩')
++lst=[]
++for i in range(1,6):
++    s=input(f'请输入第{i}位学生信息及成绩')
++    s_lst=s.split('#')
++    stu=Student(s_lst[0],s_lst[1],s_lst[2],s_lst[3])
++    lst.append(stu)
++
++for item in lst:
++    item.info()
+Index: ../../py学习/py_study/提取字符串中的所有数字并求和.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/提取字符串中的所有数字并求和.py b/../../py学习/py_study/提取字符串中的所有数字并求和.py
+new file mode 100644
+--- /dev/null	(date 1725348755382)
++++ b/../../py学习/py_study/提取字符串中的所有数字并求和.py	(date 1725348755382)
+@@ -0,0 +1,13 @@
++def get_digit(x):
++    s=0
++    lst=[]
++    for item in x:
++        if item.isdigit():
++            lst.append(int(item))
++    s=sum(lst)
++    return lst,s
++
++x='hello123world456'
++lst,s=get_digit(x)
++print(lst)
++print(s)
+Index: ../../HUAWEI/Documents/语法分析器/语义分析器.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../HUAWEI/Documents/语法分析器/语义分析器.py b/../../HUAWEI/Documents/语法分析器/语义分析器.py
+new file mode 100644
+--- /dev/null	(date 1730811087822)
++++ b/../../HUAWEI/Documents/语法分析器/语义分析器.py	(date 1730811087822)
+@@ -0,0 +1,299 @@
++class Token:
++    def __init__(self, token_type, value=None):
++        self.type = token_type
++        self.value = value
++
++class TokenType:
++    MAIN = '1'
++    INT = '2'
++    FLOAT = '3'
++    IF = '4'
++    ELSE = '5'
++    WHILE = '6'
++    OR_LONG = '7'
++    AND_LONG = '8'
++    NOT = '9'
++    ID = '10'
++    INT_COUNT = '11'
++    FLOAT_COUNT = '12'
++    ASSIGN = '13'
++    PLUS = '14'
++    MINUS = '15'
++    MUL = '16'
++    DIV = '17'
++    SEMICOLON = '24'
++    COMMA = '25'
++    LPAREN = '26'
++    RPAREN = '27'
++    LBRACE = '28'
++    RBRACE = '29'
++
++class RELATION_SYMBOL:
++    LESSER = '18'
++    LESSER_OR_EQUAL = '19'
++    GREATER = '20'
++    GREATER_OR_EQUAL = '21'
++    EQUAL = '22'
++    NOT_EQUAL = '23'
++
++class Parser:
++    def __init__(self, tokens):
++        self.tokens = tokens
++        self.current_index = 0
++        self.current_token = self.tokens[self.current_index]
++        self.statements = []
++        self.next_quad=1
++        self.next_temp=201
++        self.quad={}
++
++    def write(self, statements):
++        filename = "syntax.txt"
++        with open(filename, 'w', encoding='utf-8') as file:
++            for statement in statements:
++                file.write(statement + '\n')
++    def add_quad(self,op,left,right,result):
++        self.quad[self.next_quad]=[op,left,right,result]
++        self.next_quad+=1
++
++    def write_quad(self):
++        for key in self.quad:
++            if self.quad[key][-1]==0:
++                self.quad[key][-1]=self.next_quad
++
++        filename='quad.txt'
++        with open(filename,'w',encoding='utf-8') as file:
++            for key,values in self.quad.items():
++                file.write(f'{key} '+' '.join(str(value) for value in values)+'\n')
++            file.write(f"{self.next_quad} "+"88 0 0 0")
++
++
++    def error(self):
++        raise Exception(f'Invalid syntax at token: {self.current_token.type} (Index: {self.current_index})')
++
++    def advance(self):
++        self.current_index += 1
++        if self.current_index < len(self.tokens):
++            self.current_token = self.tokens[self.current_index]
++        else:
++            self.current_token = None
++
++    def eat(self, token_type):
++        if self.current_token is not None and self.current_token.type == token_type:
++            self.advance()
++        else:
++            self.error()
++
++    def program(self):
++        self.eat(TokenType.MAIN)
++        self.eat(TokenType.LPAREN)
++        self.eat(TokenType.RPAREN)
++        self.eat(TokenType.LBRACE)
++        self.statement_list()
++        self.eat(TokenType.RBRACE)
++        self.statements.append("Program")
++        self.write(self.statements)
++        self.write_quad()
++
++    def statement_list(self):
++        next1=self.single_statement()
++        while self.current_token is not None and self.current_token.type != TokenType.RBRACE:
++            M_quad=self.next_quad
++            next2=self.single_statement()
++            for next in next1:
++                if next!=0:
++                    self.quad[next][-1]=M_quad
++            next1=next2
++        return next1
++    def single_statement(self):
++        if self.current_token.type in {TokenType.INT, TokenType.FLOAT}:
++            self.declaration_statement()
++            self.statements.append("DecSta")
++            return [0]
++        elif self.current_token.type == TokenType.ID:
++            self.assignment_statement()
++            self.statements.append("AssSta")
++            return [0]
++        elif self.current_token.type == TokenType.IF:
++            next=self.if_statement()
++            self.statements.append("IfSta")
++            return next
++        elif self.current_token.type == TokenType.WHILE:
++            next=self.while_statement()
++            self.statements.append("WhileSta")
++            return next
++        else:
++            return [0]
++
++    def declaration_statement(self):
++        """解析语句说明"""
++        self.advance()
++        self.variable_list()
++        self.eat(TokenType.SEMICOLON)
++
++    def variable_list(self):
++        """解析变量列表"""
++        self.eat(TokenType.ID)
++        while self.current_token is not None and self.current_token.type == TokenType.COMMA:
++            self.eat(TokenType.COMMA)
++            self.eat(TokenType.ID)
++
++    def assignment_statement(self):
++        result=self.current_token.value
++        self.eat(TokenType.ID)
++        self.eat(TokenType.ASSIGN)
++        op=TokenType.ASSIGN
++        place=self.expression()
++        self.statements.append('Exp')
++        self.eat(TokenType.SEMICOLON)
++        self.add_quad(op,place,0,result)
++
++    def if_statement(self):
++        """解析if语句"""
++        self.eat(TokenType.IF)
++        self.eat(TokenType.LPAREN)
++        true1,false1=self.boolean_expression()
++        self.eat(TokenType.RPAREN)
++        M1_quad=self.next_quad
++        for true in true1:
++            self.quad[true][-1]=M1_quad
++        S1_next=self.statement_block()
++        S_next=false1+S1_next
++        if self.current_token is not None and self.current_token.type == TokenType.ELSE:
++            self.eat(TokenType.ELSE)
++            N_next=[self.next_quad]
++            self.add_quad(30,0,0,0)
++            M2_quad=self.next_quad
++            for false in false1:
++                self.quad[false][-1]=M2_quad
++            S2_next=self.statement_block()
++            S_next=S1_next+S2_next+N_next
++        return S_next
++    def while_statement(self):
++        """解析while语句"""
++        self.eat(TokenType.WHILE)
++        self.eat(TokenType.LPAREN)
++        M1_quad=self.next_quad
++        true1,false1=self.boolean_expression()
++        self.eat(TokenType.RPAREN)
++        M2_quad=self.next_quad
++        S1_next=self.statement_block()
++        for next in S1_next:
++            if next!=0:
++                self.quad[next][-1]=M1_quad
++        for true in true1:
++            self.quad[true][-1]=M2_quad
++        S_next=false1
++        self.add_quad(30,0,0,M1_quad)
++        return S_next
++
++    def statement_block(self):
++        if self.current_token is not None and self.current_token.type == TokenType.LBRACE:
++            self.eat(TokenType.LBRACE)
++            next= self.statement_list()
++            self.eat(TokenType.RBRACE)
++            return next
++        else:
++            return self.single_statement()
++
++    def expression(self):
++        """解析表达式"""
++        place1=self.term()
++        while self.current_token is not None and self.current_token.type in {TokenType.PLUS, TokenType.MINUS}:
++            op=self.current_token.type
++            self.advance()
++            place2=self.term()
++            self.add_quad(op,place1,place2,self.next_temp)
++            place1=self.next_temp
++            self.next_temp+=1
++        return place1
++
++    def term(self):
++        """解析项"""
++        place1=self.factor()
++        while self.current_token is not None and self.current_token.type in {TokenType.MUL, TokenType.DIV}:
++            op=self.current_token.type
++            self.advance()
++            place2=self.factor()
++            self.add_quad(op,place1,place2,self.next_temp)
++            place1=self.next_temp
++            self.next_temp+=1
++        return place1
++
++    def factor(self):
++        """解析因子"""
++        if self.current_token is not None and self.current_token.type in {TokenType.ID, TokenType.INT_COUNT, TokenType.FLOAT_COUNT}:
++            place=self.current_token.value
++            self.advance()
++            return place
++        elif self.current_token is not None and self.current_token.type == TokenType.LPAREN:
++            self.eat(TokenType.LPAREN)
++            place=self.expression()
++            self.eat(TokenType.RPAREN)
++            return place
++
++    def boolean_expression(self):
++        """解析布尔式"""
++        true1,false1=self.boolean_term()
++        while self.current_token is not None and self.current_token.type == TokenType.OR_LONG:
++            self.eat(TokenType.OR_LONG)
++            M_quad=self.next_quad
++            for false in false1:
++                self.quad[false][-1]=M_quad
++            true2,false2=self.boolean_term()
++            true1=true1+true2
++        self.statements.append('BoolExp')
++        return true1, false1
++
++    def boolean_term(self):
++        """解析布尔项"""
++        true1,false1=self.boolean_factor()
++        while self.current_token is not None and self.current_token.type == TokenType.AND_LONG:
++            self.eat(TokenType.AND_LONG)
++            M_quad=self.next_quad
++            true2,false2=self.boolean_factor()
++            for true in true1:
++                self.quad[true][-1]=M_quad
++            true1=true2
++            false1=false1+false2
++        return true1,false1
++
++    def boolean_factor(self):
++        """解析布尔因子"""
++        if self.current_token is not None and self.current_token.type == TokenType.NOT:
++            self.eat(TokenType.NOT)
++            false,true=self.relation_expression()
++            return true,false
++        else:
++            true,false=self.relation_expression()
++            return true,false
++
++    def relation_expression(self):
++        """解析关系式"""
++        if self.current_token is not None and self.current_token.type == TokenType.ID:
++            true=[self.next_quad]
++            false=[self.next_quad+1]
++            place1=self.current_token.value
++            self.advance()
++            if self.current_token is not None and self.current_token.type in RELATION_SYMBOL.__dict__.values():
++                op=self.current_token.type
++                self.advance()
++                place2=self.current_token.value
++                self.eat(TokenType.ID)
++                self.add_quad(op,place1,place2,0)
++                self.add_quad(30,0,0,0)
++                return true,false
++
++if __name__ == "__main__":
++    tokens = []
++    with open('token.txt', 'r', encoding='utf-8') as file:
++        for line in file:
++            parts = line.split()
++            if len(parts) < 1:
++                continue
++            token_type = parts[0]  # 假设第一部分是token类型
++            token_value = parts[1] if len(parts) > 1 else None  # 假设第二部分是token值
++            tokens.append(Token(token_type, token_value))
++
++    parser = Parser(tokens)
++    parser.program()
++    print("语义分析成功!")
+Index: ../../py学习/py_study/TCP多次通信服务端的代码.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/TCP多次通信服务端的代码.py b/../../py学习/py_study/TCP多次通信服务端的代码.py
+new file mode 100644
+--- /dev/null	(date 1725974923945)
++++ b/../../py学习/py_study/TCP多次通信服务端的代码.py	(date 1725974923945)
+@@ -0,0 +1,26 @@
++import socket
++
++socket_obj=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
++
++socket_obj.bind(('127.0.0.1',888))
++
++socket_obj.listen(5)
++
++client_socket,client_addr=socket_obj.accept()
++
++info=client_socket.recv(1024).decode('utf-8')
++while info!='bye':
++    if info!='':
++        print('接受到的数据是：',info)
++    data=input('请输入要发送的数据：')
++
++    client_socket.send(data.encode('utf-8'))
++    if data=='bye':
++        break
++    info=client_socket.recv(1024).decode('utf-8')
++
++client_socket.close()
++socket_obj.close()
++
++
++
+Index: ../../py学习/py_study/其他函数的使用.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/其他函数的使用.py b/../../py学习/py_study/其他函数的使用.py
+new file mode 100644
+--- /dev/null	(date 1725108733105)
++++ b/../../py学习/py_study/其他函数的使用.py	(date 1725108733105)
+@@ -0,0 +1,11 @@
++#format()
++print(format(3.14,'20'))#数值型默认右对齐
++print(format('hello','20')) #字符串默认左对齐
++print(format('hello','*<20')) #左对齐，*填充
++print(format('hello','*>20')) #右对齐，*填充
++print(format('hello','*^20')) #居中，*填充
++
++print(format(3.1415926,'.2f'))
++print(format(20,'b'))
++print(format(20,'o'))
++print(format(20,'x'))
+\ No newline at end of file
+Index: ../../py学习/py_study/exercise.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/exercise.py b/../../py学习/py_study/exercise.py
+new file mode 100644
+--- /dev/null	(date 1728519344313)
++++ b/../../py学习/py_study/exercise.py	(date 1728519344313)
+@@ -0,0 +1,83 @@
++import numpy as np
++import matplotlib.pyplot as plt
++from sklearn import datasets
++from sklearn.model_selection import train_test_split, cross_val_score, learning_curve, GridSearchCV
++from sklearn.linear_model import LogisticRegression
++from sklearn.ensemble import RandomForestClassifier
++from sklearn.svm import SVC
++from sklearn.neighbors import KNeighborsClassifier
++from sklearn.metrics import classification_report, accuracy_score, precision_score, recall_score, f1_score
++
++# 载入数据集
++iris = datasets.load_iris()
++X, y = iris.data, iris.target
++
++# 划分训练集与测试集
++X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
++
++# 定义分类器和参数网格
++classifiers = {
++    "Logistic Regression": (LogisticRegression(max_iter=200), {'C': [0.01, 0.1, 1, 10]}),
++    "Random Forest": (RandomForestClassifier(), {'n_estimators': [10, 50, 100], 'max_depth': [None, 10, 20]}),
++    "SVM": (SVC(), {'C': [0.1, 1, 10], 'kernel': ['linear', 'rbf']}),
++    "KNN": (KNeighborsClassifier(), {'n_neighbors': [3, 5, 7, 9]})
++}
++
++results = {}
++best_estimators = {}
++
++# 评估模型与参数寻优
++for name, (clf, param_grid) in classifiers.items():
++    grid_search = GridSearchCV(clf, param_grid, cv=5, scoring='f1_macro')
++    grid_search.fit(X_train, y_train)
++
++    best_estimators[name] = grid_search.best_estimator_
++
++    y_pred = grid_search.predict(X_test)
++
++    accuracy = accuracy_score(y_test, y_pred)
++    precision = precision_score(y_test, y_pred, average='macro')
++    recall = recall_score(y_test, y_pred, average='macro')
++    f1 = f1_score(y_test, y_pred, average='macro')
++
++    results[name] = {
++        'Best Params': grid_search.best_params_,
++        'Accuracy': accuracy,
++        'Precision': precision,
++        'Recall': recall,
++        'F1 Score': f1
++    }
++
++# 打印结果
++for model, metrics in results.items():
++    print(f"{model}:\n"
++          f"  Best Params: {metrics['Best Params']}\n"
++          f"  Accuracy: {metrics['Accuracy']:.2f}\n"
++          f"  Precision: {metrics['Precision']:.2f}\n"
++          f"  Recall: {metrics['Recall']:.2f}\n"
++          f"  F1 Score: {metrics['F1 Score']:.2f}\n")
++
++
++# 绘制学习曲线
++def plot_learning_curve(estimator, title, X, y, ylim=None, cv=None, n_jobs=1):
++    plt.figure()
++    plt.title(title)
++    if ylim is not None:
++        plt.ylim(*ylim)
++    plt.xlabel("Training examples")
++    plt.ylabel("Score")
++    train_sizes, train_scores, test_scores = learning_curve(estimator, X, y, cv=cv, n_jobs=n_jobs,
++                                                            train_sizes=np.linspace(0.1, 1.0, 5))
++    train_scores_mean = np.mean(train_scores, axis=1)
++    test_scores_mean = np.mean(test_scores, axis=1)
++
++    plt.plot(train_sizes, train_scores_mean, 'o-', color="r", label="Training score")
++    plt.plot(train_sizes, test_scores_mean, 'o-', color="g", label="Cross-validation score")
++    plt.legend(loc="best")
++    plt.grid()
++    plt.show()
++
++
++# 绘制每种分类器的学习曲线
++for name, clf in best_estimators.items():
++    plot_learning_curve(clf, f"Learning Curve for {name}", X, y, cv=5)
+Index: ../../py学习/py_study/高维数据的存储.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/高维数据的存储.py b/../../py学习/py_study/高维数据的存储.py
+new file mode 100644
+--- /dev/null	(date 1725951539458)
++++ b/../../py学习/py_study/高维数据的存储.py	(date 1725951539458)
+@@ -0,0 +1,26 @@
++import json
++
++lst=[
++    {'name':'杨淑君','age':18,'score':90},
++    {'name':'陈梅梅','age':21,'score':99},
++    {'name':'张一一','age':19,'score':89}
++]
++
++s=json.dumps(lst,ensure_ascii=False,indent=4)#ensure_ascii正常显示中文，indent增加数据的缩进，美观用的
++print(type(s)) # 编码  list-->str ， 列表中是字典
++print(s)
++
++# 解码
++lst2=json.loads(s)
++print(type(lst2))
++print(lst2)
++
++#编码到文件中
++with open('student.txt','w',encoding='utf-8') as file:
++    json.dump(lst,file,ensure_ascii=False,indent=4)
++
++#解码到程序
++with open('student.txt','r',encoding='utf-8') as file:
++    lst3=json.load(file)
++    print(type(lst3))
++    print(lst3)
+\ No newline at end of file
+Index: ../../py学习/py_study/结构的模式匹配.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/结构的模式匹配.py b/../../py学习/py_study/结构的模式匹配.py
+new file mode 100644
+--- /dev/null	(date 1724747505939)
++++ b/../../py学习/py_study/结构的模式匹配.py	(date 1724747505939)
+@@ -0,0 +1,10 @@
++data=eval(input("请输入要匹配的数据类型:"))
++match data:
++    case {'name':'ysj','age':20}:
++        print('字典')
++    case [10,20,30]:
++        print('列表')
++    case (10,20,40):
++        print('元组')
++    case _:
++        print('相当于多重if中的else')
+\ No newline at end of file
+Index: ../../py学习/py_study/从PDF文件中提取数据.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/从PDF文件中提取数据.py b/../../py学习/py_study/从PDF文件中提取数据.py
+new file mode 100644
+--- /dev/null	(date 1725690655813)
++++ b/../../py学习/py_study/从PDF文件中提取数据.py	(date 1725690655813)
+@@ -0,0 +1,8 @@
++import pdfplumber
++#打开PDF文件
++with pdfplumber.open('小学数学-公式.pdf') as pdf:
++    for i in pdf.pages: # 遍历页
++        print(i.extract_text()) #extract_text()方法提取内容
++        print(f'-------------第{i.page_number}页结束-------------')
++
++        
+\ No newline at end of file
+Index: ../../py学习/py_study/集合的创建与删除.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/集合的创建与删除.py b/../../py学习/py_study/集合的创建与删除.py
+new file mode 100644
+--- /dev/null	(date 1724746268665)
++++ b/../../py学习/py_study/集合的创建与删除.py	(date 1724746268665)
+@@ -0,0 +1,27 @@
++#{}直接创建集合
++s={10,20,30,40}
++print(s)
++#集合只能存储不可变数据类型
++# s={[10,20],[30,40]} 会报错，集合中不能存储列表
++
++#使用set()创建集合
++s=set() #创建了一个空集合
++print(s)
++
++s={} #创建的是字典
++
++s=set('helloworld')
++print(s) #集合无序且不重复
++
++s2=set([10,20,30])
++print(s2)
++
++s3=set(range(1,10))
++print(s3)
++
++#集合属于序列中的一种
++
++print('max:',max(s3))
++print('min:',min(s3))
++print('len:',len(s3))
++print('9在集合中存在吗？',(9 in s3))
+\ No newline at end of file
+Index: ../../HUAWEI/Documents/语法分析器/语法分析器.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../HUAWEI/Documents/语法分析器/语法分析器.py b/../../HUAWEI/Documents/语法分析器/语法分析器.py
+new file mode 100644
+--- /dev/null	(date 1730697859885)
++++ b/../../HUAWEI/Documents/语法分析器/语法分析器.py	(date 1730697859885)
+@@ -0,0 +1,213 @@
++class Token:
++    def __init__(self, token_type, value=None):
++        self.type = token_type
++        self.value = value
++
++class TokenType:
++    MAIN = '1'
++    INT = '2'
++    FLOAT = '3'
++    IF = '4'
++    ELSE = '5'
++    WHILE = '6'
++    OR_LONG = '7'
++    AND_LONG = '8'
++    NOT = '9'
++    ID = '10'
++    INT_COUNT = '11'
++    FLOAT_COUNT = '12'
++    ASSIGN = '13'
++    PLUS = '14'
++    MINUS = '15'
++    MUL = '16'
++    DIV = '17'
++    SEMICOLON = '24'
++    COMMA = '25'
++    LPAREN = '26'
++    RPAREN = '27'
++    LBRACE = '28'
++    RBRACE = '29'
++
++class RELATION_SYMBOL:
++    LESSER = '18'
++    LESSER_OR_EQUAL = '19'
++    GREATER = '20'
++    GREATER_OR_EQUAL = '21'
++    EQUAL = '22'
++    NOT_EQUAL = '23'
++
++class Parser:
++    def __init__(self, tokens):
++        self.tokens = tokens
++        self.current_index = 0
++        self.current_token = self.tokens[self.current_index]
++        self.statements = []
++        self.exp_added = False  # 标志位，避免重复添加 'Exp'
++
++    def write(self, statements):
++        filename = "syntax.txt"
++        with open(filename, 'w', encoding='utf-8') as file:
++            for statement in statements:
++                file.write(statement + '\n')
++
++    def error(self):
++        raise Exception(f'Invalid syntax at token: {self.current_token.type} (Index: {self.current_index})')
++
++    def advance(self):
++        self.current_index += 1
++        if self.current_index < len(self.tokens):
++            self.current_token = self.tokens[self.current_index]
++        else:
++            self.current_token = None
++
++    def eat(self, token_type):
++        if self.current_token is not None and self.current_token.type == token_type:
++            self.advance()
++        else:
++            self.error()
++
++    def program(self):
++        self.eat(TokenType.MAIN)
++        self.eat(TokenType.LPAREN)
++        self.eat(TokenType.RPAREN)
++        self.eat(TokenType.LBRACE)
++        self.statement_list()
++        self.eat(TokenType.RBRACE)
++        self.statements.append("Program")
++        self.write(self.statements)
++
++    def statement_list(self):
++        while self.current_token is not None and self.current_token.type != TokenType.RBRACE:
++            self.single_statement()
++
++    def single_statement(self):
++        if self.current_token.type in {TokenType.INT, TokenType.FLOAT}:
++            self.declaration_statement()
++            self.statements.append("DecSta")
++        elif self.current_token.type == TokenType.ID:
++            self.assignment_statement()
++            self.statements.append("AssSta")
++        elif self.current_token.type == TokenType.IF:
++            self.if_statement()
++            self.statements.append("IfSta")
++        elif self.current_token.type == TokenType.WHILE:
++            self.while_statement()
++            self.statements.append("WhileSta")
++        else:
++            self.error()
++
++    def declaration_statement(self):
++        """解析语句说明"""
++        self.advance()
++        self.variable_list()
++        self.eat(TokenType.SEMICOLON)
++
++    def variable_list(self):
++        """解析变量列表"""
++        self.eat(TokenType.ID)
++        while self.current_token is not None and self.current_token.type == TokenType.COMMA:
++            self.eat(TokenType.COMMA)
++            self.eat(TokenType.ID)
++
++    def assignment_statement(self):
++        self.eat(TokenType.ID)  # 此处当前token已经是ID了
++        self.eat(TokenType.ASSIGN)
++        self.expression()
++        self.statements.append('Exp')
++        self.eat(TokenType.SEMICOLON)
++
++    def if_statement(self):
++        """解析if语句"""
++        self.eat(TokenType.IF)
++        self.eat(TokenType.LPAREN)
++        self.boolean_expression()
++        self.eat(TokenType.RPAREN)
++        self.statement_block()
++        if self.current_token is not None and self.current_token.type == TokenType.ELSE:
++            self.eat(TokenType.ELSE)
++            self.statement_block()
++
++    def while_statement(self):
++        """解析while语句"""
++        self.eat(TokenType.WHILE)
++        self.eat(TokenType.LPAREN)
++        self.boolean_expression()
++        self.eat(TokenType.RPAREN)
++        self.statement_block()
++
++    def statement_block(self):
++        if self.current_token is not None and self.current_token.type == TokenType.LBRACE:
++            self.eat(TokenType.LBRACE)
++            self.statement_list()
++            self.eat(TokenType.RBRACE)
++        else:
++            self.single_statement()
++
++    def expression(self):
++        """解析表达式"""
++        self.term()
++        while self.current_token is not None and self.current_token.type in {TokenType.PLUS, TokenType.MINUS}:
++            self.advance()
++            self.term()
++
++    def term(self):
++        """解析项"""
++        self.factor()
++        while self.current_token is not None and self.current_token.type in {TokenType.MUL, TokenType.DIV}:
++            self.advance()
++            self.factor()
++
++    def factor(self):
++        """解析因子"""
++        if self.current_token is not None and self.current_token.type in {TokenType.ID, TokenType.INT_COUNT, TokenType.FLOAT_COUNT}:
++            self.advance()
++        elif self.current_token is not None and self.current_token.type == TokenType.LPAREN:
++            self.eat(TokenType.LPAREN)
++            self.expression()
++            self.eat(TokenType.RPAREN)
++
++    def boolean_expression(self):
++        """解析布尔式"""
++        self.boolean_term()
++        while self.current_token is not None and self.current_token.type == TokenType.OR_LONG:
++            self.eat(TokenType.OR_LONG)
++            self.boolean_term()
++        self.statements.append('BoolExp')
++
++    def boolean_term(self):
++        """解析布尔项"""
++        self.boolean_factor()
++        while self.current_token is not None and self.current_token.type == TokenType.AND_LONG:
++            self.eat(TokenType.AND_LONG)
++            self.boolean_factor()
++
++    def boolean_factor(self):
++        """解析布尔因子"""
++        if self.current_token is not None and self.current_token.type == TokenType.NOT:
++            self.eat(TokenType.NOT)
++            self.relation_expression()
++        else:
++            self.relation_expression()
++
++    def relation_expression(self):
++        """解析关系式"""
++        if self.current_token is not None and self.current_token.type == TokenType.ID:
++            self.advance()
++            if self.current_token is not None and self.current_token.type in RELATION_SYMBOL.__dict__.values():
++                self.advance()
++                self.eat(TokenType.ID)
++
++if __name__ == "__main__":
++    tokens = []
++    with open('token.txt', 'r', encoding='utf-8') as file:
++        for line in file:
++            parts = line.split()
++            if len(parts) < 1:
++                continue
++            token_type = parts[0]  # 假设第一部分是token类型
++            token_value = parts[1] if len(parts) > 1 else None  # 假设第二部分是token值
++            tokens.append(Token(token_type, token_value))
++
++    parser = Parser(tokens)
++    parser.program()
++    print("语法分析成功!")
+Index: ../../py学习/py_study/TCP服务器端代码编写.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/TCP服务器端代码编写.py b/../../py学习/py_study/TCP服务器端代码编写.py
+new file mode 100644
+--- /dev/null	(date 1725970594995)
++++ b/../../py学习/py_study/TCP服务器端代码编写.py	(date 1725970594995)
+@@ -0,0 +1,27 @@
++from socket import socket,AF_INET,SOCK_STREAM
++# AF_INET 用于Internet之间的进程通信
++# SOCK_STREAM表示的是用TCP协议编程
++
++# 1.创建socket对象
++server_socket=socket(AF_INET,SOCK_STREAM)
++
++# 2.绑定IP地址和端口
++ip ="127.0.0.1" #等同于local
++port=8887
++server_socket.bind((ip,port))
++
++# 3.使用listen()开始监听
++server_socket.listen(5)
++
++print('服务器已启动了')
++
++# 4.等待客户端的连接
++client_socket,client_addr = server_socket.accept() #系列解包赋值
++
++# 5.接收来自客户端的数据
++data=client_socket.recv(1024)
++
++print('客户端发过来的数据为：',data.decode('utf-8')) # 要求客户端发过来的数据是使用utf-8进行编码的
++
++# 6.关闭socke
++server_socket.close()
+\ No newline at end of file
+Index: ../../py学习/py_study/推算几天后的日期--datetime模块.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/推算几天后的日期--datetime模块.py b/../../py学习/py_study/推算几天后的日期--datetime模块.py
+new file mode 100644
+--- /dev/null	(date 1725763358180)
++++ b/../../py学习/py_study/推算几天后的日期--datetime模块.py	(date 1725763358180)
+@@ -0,0 +1,15 @@
++import datetime
++#输入日期
++def input_date():
++    inputdate=input('请输入开始日期：(20281001)后按回车')
++    datestr=inputdate[0:4]+'-'+inputdate[4:6]+'-'+inputdate[6:8] #切片切出年，月，日
++    # 类型转换
++    dt=datetime.datetime.strptime(datestr,'%Y-%m-%d')
++    return dt
++
++if __name__=='__main__':
++    date=input_date()
++    #输入间隔的天数
++    in_num=eval(input('请输入间隔的天数：'))
++    date+=datetime.timedelta(days=in_num)
++    print('您推算的日期是：',date)
+Index: ../../py学习/py_study/字典元素的访问及遍历.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/字典元素的访问及遍历.py b/../../py学习/py_study/字典元素的访问及遍历.py
+new file mode 100644
+--- /dev/null	(date 1724744308544)
++++ b/../../py学习/py_study/字典元素的访问及遍历.py	(date 1724744308544)
+@@ -0,0 +1,22 @@
++d={'hello':10,'world':20,'python':30}
++#访问字典中的元素
++
++#（1）使用d[key]
++print(d['hello'])
++
++#(2) d.get()
++print(d.get('python'))
++
++#二者是有区别的，如果key不存在，那么d[key]会报错，而d.get(key)可以指定默认值
++# print(d['java'])
++print(d.get('java')) #None
++print(d.get('java','不存在'))
++
++#字典的遍历
++for item in d.items():
++    print(item) # key=value组成的一个元素
++
++# 在使用for循环遍历时，分别获取key,value
++for key,value in d.items():
++    print(key,value)
++    
+\ No newline at end of file
+Index: ../../py学习/py_study_socket/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study_socket/.idea/workspace.xml b/../../py学习/py_study_socket/.idea/workspace.xml
+new file mode 100644
+--- /dev/null	(date 1726052657601)
++++ b/../../py学习/py_study_socket/.idea/workspace.xml	(date 1726052657601)
+@@ -0,0 +1,156 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="AutoImportSettings">
++    <option name="autoReloadType" value="SELECTIVE" />
++  </component>
++  <component name="ChangeListManager">
++    <list default="true" id="75020069-6693-462d-9e36-56d27c834820" name="Changes" comment="">
++      <change afterPath="$PROJECT_DIR$/../py_study/PIL模块图像的处理.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/Pandas与Matplotlib绘制饼图.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/Random模块的使用.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/TCP多次通信服务端的代码.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/TCP服务器端代码编写.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/UDP的发送方.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/datdtime类的使用.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/format的格式控制.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/match函数的使用.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/os模块的使用.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/pyecharts图表绘制.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/search函数的使用.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/sub函数与split函数的使用.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/timedelta的使用.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/time模块的使用.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/weather.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/with语句.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/一维数据和二维数据的存储.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/二维列表的遍历与列表生成式.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/从PDF文件中提取数据.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/使用面向对象思想实现乐器弹奏.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/元组元素的访问与遍历.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/元组生成式.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/元组的创建与删除.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/关键字传参的使用.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/其他函数的使用.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/函数的定义及调用.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/列表生成式.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/列表的排序sorted.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/判断是否构成三角形.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/匿名函数的使用.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/千年虫.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/华为笔记本评论的词云图--jieba与wordcloud.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/可变参数的使用.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/合并字典运算符.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/同步迭代.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/图像的灰度处理.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/字典元素的访问及遍历.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/字典生成式.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/字典的创建与删除.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/字典的相关操作方法.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/字符串中大小写字母转换.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/字符串的去重操作.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/字符串的常用操作.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/字符串的拼接操作.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/字符串的格式化.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/字符串的相关处理方法.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/字符串的编码与解码.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/定义学生类录入5个学生信息存储到列表中.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/推算几天后的日期--datetime模块.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/提取字符串中的所有数字并求和.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/数学函数的使用.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/文件的写入操作.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/文件的复制.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/文件的读写操作.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/文件的读取操作.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/格式化输出商品的名称和单价.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/模拟12306火车票订票流程.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/模拟京东购物流程.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/模拟手机通讯录.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/模拟高铁售票系统--prettytable模块.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/爬取百度LOGO图片.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/示例.从Excel文件中读取数据.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/示例.将爬取的景区天气数据存储到excel文件中.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/结构的模式匹配.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/获取景区的天气预报.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/输入成绩如果不正确手动抛出异常.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/迭代器操作函数的使用.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/集合的创建与删除.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/集合的操作符.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/集合的相关操作.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/高维数据的存储.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/../py_study/默认值参数的使用.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/TCP多次通信客户端的代码.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/TCP客户端代码的编写.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/UDP的接收方.py" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/客服人员.py" afterDir="false" />
++    </list>
++    <option name="SHOW_DIALOG" value="false" />
++    <option name="HIGHLIGHT_CONFLICTS" value="true" />
++    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
++    <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="Python Script" />
++      </list>
++    </option>
++  </component>
++  <component name="Git.Settings">
++    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../" />
++  </component>
++  <component name="ProjectColorInfo"><![CDATA[{
++  "associatedIndex": 1
++}]]></component>
++  <component name="ProjectId" id="2lsY4h2CjfjN7dUutS3oFB2lebO" />
++  <component name="ProjectLevelVcsManager">
++    <ConfirmationsSetting value="2" id="Add" />
++  </component>
++  <component name="ProjectViewState">
++    <option name="hideEmptyMiddlePackages" value="true" />
++    <option name="showLibraryContents" value="true" />
++  </component>
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Python.TCP多次通信客户端的代码.executor": "Run",
++    "Python.TCP客户端代码的编写.executor": "Run",
++    "Python.UDP的接收方.executor": "Run",
++    "Python.客服人员.executor": "Run",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "git-widget-placeholder": "master",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "vue.rearranger.settings.migration": "true"
++  }
++}]]></component>
++  <component name="SharedIndexes">
++    <attachedChunks>
++      <set>
++        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.18034.82" />
++        <option value="bundled-python-sdk-975db3bf15a3-2767605e8bc2-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.18034.82" />
++      </set>
++    </attachedChunks>
++  </component>
++  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
++  <component name="TaskManager">
++    <task active="true" id="Default" summary="Default task">
++      <changelist id="75020069-6693-462d-9e36-56d27c834820" name="Changes" comment="" />
++      <created>1725970061875</created>
++      <option name="number" value="Default" />
++      <option name="presentableId" value="Default" />
++      <updated>1725970061875</updated>
++      <workItem from="1725970070490" duration="5151000" />
++    </task>
++    <servers />
++  </component>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="3" />
++  </component>
++  <component name="com.intellij.coverage.CoverageDataManagerImpl">
++    <SUITE FILE_PATH="coverage/py_study_socket$TCP.coverage" NAME="TCP多次通信客户端的代码 Coverage Results" MODIFIED="1725974970709" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/py_study_socket$.coverage" NAME="客服人员 Coverage Results" MODIFIED="1726052261056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/py_study_socket$UDP.coverage" NAME="UDP的接收方 Coverage Results" MODIFIED="1725976505247" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++  </component>
++</project>
+\ No newline at end of file
+Index: ../../py学习/py_study/Pandas与Matplotlib绘制饼图.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/Pandas与Matplotlib绘制饼图.py b/../../py学习/py_study/Pandas与Matplotlib绘制饼图.py
+new file mode 100644
+--- /dev/null	(date 1725692193464)
++++ b/../../py学习/py_study/Pandas与Matplotlib绘制饼图.py	(date 1725692193464)
+@@ -0,0 +1,20 @@
++import pandas as pd
++import matplotlib.pyplot as plt
++#读取Excel文件
++df=pd.read_excel('JD手机销售数据.xlsx')
++
++#解决中文乱码
++plt.rcParams['font.sans-serif']=['SimHei']
++
++#设置画布大小
++plt.figure(figsize=(10,6))
++labels=df['商品名称']
++y=df['北京出库销量']
++
++plt.pie(y,labels=labels,autopct='%1.1f%%',startangle=90)
++
++#设置x,y轴刻度
++plt.axis('equal')
++plt.title('2028年1月北京各手机品牌出库量占比图')
++
++plt.show()
+\ No newline at end of file
+Index: ../../py学习/py_study/字典的创建与删除.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/字典的创建与删除.py b/../../py学习/py_study/字典的创建与删除.py
+new file mode 100644
+--- /dev/null	(date 1724677900628)
++++ b/../../py学习/py_study/字典的创建与删除.py	(date 1724677900628)
+@@ -0,0 +1,28 @@
++#（1）创建字典
++d={10:"dog",20:'cat',30:'pet',20:'zoo'}
++print(d) #key相同时，value值进行了覆盖
++
++#（2）zip函数
++lst1=[10,20,30,40]
++lst2=['cat','dog','pet','zoo','car']
++zipobj=zip(lst1,lst2)
++print(zipobj) #映射结果是zip对象，看不到内容
++
++# print(list(zipobj)) 这样转换成列表对象再打印可以看到内容
++
++d=dict(zipobj)
++print(d)
++
++#（3）使用参数创建字典
++d=dict(cat=10,dog=20)
++print(d)
++
++t=(10,20,30)
++print({t:10}) #元组可以作为字典中的key，列表不行
++
++#字典属于序列
++print('max:',max(d))
++print('min:',min(d))
++print('len:',len(d))
++
++del d
+\ No newline at end of file
+Index: ../../py学习/py_study/字符串的常用操作.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/字符串的常用操作.py b/../../py学习/py_study/字符串的常用操作.py
+new file mode 100644
+--- /dev/null	(date 1724850838115)
++++ b/../../py学习/py_study/字符串的常用操作.py	(date 1724850838115)
+@@ -0,0 +1,21 @@
++s='HelloWorld'
++
++#字符串的替换
++new_s=s.replace('o','你好',1)#最后一个参数是替换次数，默认是全部替换
++print(new_s)
++
++#字符串在指定的宽度范围内居中
++print(s.center(20))
++print(s.center(20,'*'))
++
++#去掉字符串左右的空格
++s='    Hello   World   '
++print(s.strip())
++print(s.lstrip())
++print(s.rstrip())
++
++#去掉指定的字符
++s3='dl-HelloWorld'
++print(s3.strip('ld'))#与顺序无关
++print(s3.lstrip('ld'))
++print(s3.rstrip('ld'))
+\ No newline at end of file
+Index: ../../py学习/py_study/模拟高铁售票系统--prettytable模块.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/模拟高铁售票系统--prettytable模块.py b/../../py学习/py_study/模拟高铁售票系统--prettytable模块.py
+new file mode 100644
+--- /dev/null	(date 1725762583034)
++++ b/../../py学习/py_study/模拟高铁售票系统--prettytable模块.py	(date 1725762583034)
+@@ -0,0 +1,33 @@
++import prettytable as pt
++
++#显示座席
++def show_ticket(row_num):
++    tb=pt.PrettyTable() #创建一张表格
++    # 设置标题（表格的排头部分）
++    tb.field_names=['行号','座位1','座位2','座位3','座位4','座位5']
++    # 遍历有票
++    for i in range(1,row_num+1):
++        lst=[f'第{i}行','有票','有票','有票','有票','有票']
++        tb.add_row(lst)
++    print(tb)
++
++#订票
++def order_ticket(row_num,row,column):
++    tb=pt.PrettyTable() #创建一张表格
++    #设置标题
++    tb.field_names=['行号','座位1','座位2','座位3','座位4','座位5']
++    for i in range(1,row_num+1):
++        lst = [f'第{i}行', '有票', '有票', '有票', '有票', '有票']
++        if int(row)==i:
++            lst[int(column)]='已售'
++        tb.add_row(lst)
++    print(tb)
++
++if __name__=='__main__':
++    row_num=6
++    show_ticket(row_num)
++
++    #开始售票
++    choose_num=input('请输入您选择的座席:如4,3表示第四排第三列:')
++    row,column=choose_num.split(',')
++    order_ticket(row_num,row,column)
+Index: ../../py学习/py_study/图像的灰度处理.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/图像的灰度处理.py b/../../py学习/py_study/图像的灰度处理.py
+new file mode 100644
+--- /dev/null	(date 1725691256054)
++++ b/../../py学习/py_study/图像的灰度处理.py	(date 1725691256054)
+@@ -0,0 +1,15 @@
++import numpy as np
++import matplotlib.pyplot as plt
++
++#读取图片
++n1=plt.imread('logo.jpg')
++print(n1) # 数组，三维数组，最高维度表示的是图像的高，次高维度表示的是图像的宽，最低维度[R,G,B]颜色
++plt.imshow(n1)
++
++n2=np.array([0.299,0.587,0.114]) #创建数组
++#将数组n1(RGB)颜色值与数组n2(灰度公式固定值)进行点乘运算
++x=np.dot(n1,n2)
++#传入数组，显示灰度
++plt.imshow(x,camp='gray')
++
++plt.show()
+\ No newline at end of file
+Index: ../../py学习/py_study/with语句.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/with语句.py b/../../py学习/py_study/with语句.py
+new file mode 100644
+--- /dev/null	(date 1725890565467)
++++ b/../../py学习/py_study/with语句.py	(date 1725890565467)
+@@ -0,0 +1,18 @@
++def write_fun():
++    with open('aa.txt','w',encoding='utf-8') as file:
++        file.write("小美真美")
++
++def read_fun():
++    with open('aa.txt','r',encoding='utf-8') as file:
++        s=file.read()
++        print(s)
++
++def copy(src_file,target_file):
++    with open(src_file,'r',encoding='utf-8') as file:
++        with open(target_file,'w',encoding='utf-8') as file2:
++            file2.write(file.read())
++
++
++if __name__=='__main__':
++    write_fun()
++    read_fun()
+\ No newline at end of file
+Index: ../../py学习/py_study/同步迭代.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/同步迭代.py b/../../py学习/py_study/同步迭代.py
+new file mode 100644
+--- /dev/null	(date 1724747919401)
++++ b/../../py学习/py_study/同步迭代.py	(date 1724747919401)
+@@ -0,0 +1,13 @@
++fruits={'apple','orange','pear','grape'}
++counts=[10,3,4,5]
++for f,c in zip(fruits,counts):
++    match f,c:
++        case 'apple',10:
++            print('10个苹果')
++        case 'orange',3:
++            print('3个橘子')
++        case 'pear',4:
++            print('4个梨')
++        case 'grape',5:
++            print('5串葡萄')
++            
+\ No newline at end of file
+Index: ../../py学习/py_study/列表的排序sorted.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/列表的排序sorted.py b/../../py学习/py_study/列表的排序sorted.py
+new file mode 100644
+--- /dev/null	(date 1727353509734)
++++ b/../../py学习/py_study/列表的排序sorted.py	(date 1727353509734)
+@@ -0,0 +1,16 @@
++lstlst=[4,56,3,78,40,56,89]
++print('原列表：',lst)
++
++asc_lst=sorted(lst) #产生一个新的列表
++print('升序：',asc_lst)
++print('原列表：',lst)
++
++desc_lst=sorted(lst,reverse=True)
++print('降序：',desc_lst)
++print('原列表：',lst)
++
++#忽略大小写进行排序
++lst2=['banana','apple','Cat','Orange']
++new_lst2=sorted(lst2,key=str.lower)
++print('原列表：',lst2)
++print('排序后：',new_lst2)
+\ No newline at end of file
+Index: ../../HUAWEI/Documents/语法分析器/test.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../HUAWEI/Documents/语法分析器/test.py b/../../HUAWEI/Documents/语法分析器/test.py
+new file mode 100644
+--- /dev/null	(date 1730705661153)
++++ b/../../HUAWEI/Documents/语法分析器/test.py	(date 1730705661153)
+@@ -0,0 +1,244 @@
++class Token:
++    def __init__(self, token_type, value=None):
++        self.type = token_type  # 标记的类型
++        self.value = value  # 标记的值
++
++
++class TokenType:
++    # 定义不同类型的标记
++    MAIN = '1'
++    INT = '2'
++    FLOAT = '3'
++    IF = '4'
++    ELSE = '5'
++    WHILE = '6'
++    OR_LONG = '7'
++    AND_LONG = '8'
++    NOT = '9'
++    ID = '10'
++    INT_COUNT = '11'
++    FLOAT_COUNT = '12'
++    ASSIGN = '13'
++    PLUS = '14'
++    MINUS = '15'
++    MUL = '16'
++    DIV = '17'
++    SEMICOLON = '24'
++    COMMA = '25'
++    LPAREN = '26'
++    RPAREN = '27'
++    LBRACE = '28'
++    RBRACE = '29'
++
++
++class RELATION_SYMBOL:
++    # 定义关系运算符
++    LESSER = '18'
++    LESSER_OR_EQUAL = '19'
++    GREATER = '20'
++    GREATER_OR_EQUAL = '21'
++    EQUAL = '22'
++    NOT_EQUAL = '23'
++
++
++class Parser:
++    def __init__(self, tokens):
++        self.tokens = tokens  # 所有的标记
++        self.current_index = 0  # 当前标记索引
++        self.current_token = self.tokens[self.current_index]  # 当前标记
++        self.statements = []  # 存储解析的语句
++        self.quad = {}  # 存储生成的四元式
++        self.next_quad = 1  # 后续的四元式索引
++        self.next_temp_value = 201  # 临时变量的初始值
++
++    def write(self, statements):
++        """将语法分析的语句写入文件"""
++        with open("syntax.txt", 'w', encoding='utf-8') as file:
++            for statement in statements:
++                file.write(statement + '\n')
++
++    def write_quad(self):
++        """将四元式写入文件"""
++        with open('quad.txt', 'w', encoding='utf-8') as file:
++            for key, values in self.quad.items():
++                file.write(f"{key} " + ' '.join(map(str, values)) + '\n')
++
++    def add_quad(self, op, org1, org2, result):
++        """添加四元式"""
++        self.quad[self.next_quad] = [op, org1, org2, result]
++        self.next_quad += 1
++
++    def error(self, expected=None):
++        """抛出语法错误信息"""
++        message = f'Invalid syntax at token: {self.current_token.type} (Index: {self.current_index})'
++        if expected:
++            message += f" | Expected: {expected}"
++        raise Exception(message)
++
++    def advance(self):
++        """移动到下一个标记"""
++        self.current_index += 1
++        if self.current_index < len(self.tokens):
++            self.current_token = self.tokens[self.current_index]
++        else:
++            self.current_token = None  # 没有更多标记
++
++    def eat(self, token_type):
++        """检查当前标记类型并移动到下一个标记"""
++        if self.current_token is not None and self.current_token.type == token_type:
++            self.advance()
++        else:
++            self.error(expected=token_type)
++
++    def program(self):
++        """解析程序结构"""
++        self.eat(TokenType.MAIN)
++        self.eat(TokenType.LPAREN)
++        self.eat(TokenType.RPAREN)
++        self.eat(TokenType.LBRACE)
++        self.statement_list()  # 解析语句列表
++        self.eat(TokenType.RBRACE)  # 结束大括号
++        self.statements.append("Program")
++        self.write(self.statements)
++
++    def statement_list(self):
++        """解析多个语句"""
++        while self.current_token is not None and self.current_token.type != TokenType.RBRACE:
++            self.single_statement()  # 逐个解析语句
++
++    def single_statement(self):
++        """解析单个语句"""
++        if self.current_token.type in {TokenType.INT, TokenType.FLOAT}:
++            self.declaration_statement()  # 解析声明语句
++            self.statements.append("DecSta")
++        elif self.current_token.type == TokenType.ID:
++            self.assignment_statement()  # 解析赋值语句
++            self.statements.append("AssSta")
++        elif self.current_token.type == TokenType.IF:
++            self.if_statement()  # 解析if语句
++            self.statements.append("IfSta")
++        elif self.current_token.type == TokenType.WHILE:
++            self.while_statement()  # 解析while语句
++            self.statements.append("WhileSta")
++        else:
++            self.error()  # 遇到无效情况抛出错误
++
++    def declaration_statement(self):
++        """解析声明语句"""
++        self.eat(self.current_token.type)  # 读取类型（int | float）
++        self.variable_list()  # 解析变量列表
++        self.eat(TokenType.SEMICOLON)  # 结束符号分号
++
++    def variable_list(self):
++        """解析变量列表"""
++        self.eat(TokenType.ID)  # 读取第一个变量
++        while self.current_token is not None and self.current_token.type == TokenType.COMMA:
++            self.eat(TokenType.COMMA)  # 处理多个变量
++            self.eat(TokenType.ID)  # 读取下一个变量
++
++    def assignment_statement(self):
++        """解析赋值语句"""
++        result_var = self.current_token.value
++        self.eat(TokenType.ID)  # 读取标识符
++        self.eat(TokenType.ASSIGN)  # 读取赋值符号
++        expression_result = self.expression()  # 解析表达式
++        self.statements.append('Exp')  # 添加表达式标记
++        self.eat(TokenType.SEMICOLON)  # 读取结束分号
++        self.add_quad('=', expression_result, 0, result_var)  # 生成赋值的四元式
++
++    def if_statement(self):
++        """解析if语句"""
++        self.eat(TokenType.IF)  # 读取if
++        self.eat(TokenType.LPAREN)  # 读取左括号
++        true_labels, false_labels = self.boolean_expression()  # 解析布尔表达式
++        self.eat(TokenType.RPAREN)  # 读取右括号
++        self.statement_block()  # 解析语句块
++        if self.current_token is not None and self.current_token.type == TokenType.ELSE:
++            self.eat(TokenType.ELSE)  # 读取else
++            self.statement_block()  # 解析else的语句块
++
++    def while_statement(self):
++        """解析while语句"""
++        self.eat(TokenType.WHILE)  # 读取while
++        self.eat(TokenType.LPAREN)  # 读取左括号
++        true_labels, false_labels = self.boolean_expression()  # 解析布尔表达式
++        self.eat(TokenType.RPAREN)  # 读取右括号
++        self.statement_block()  # 解析语句块
++
++    def statement_block(self):
++        """解析语句块"""
++        if self.current_token is not None and self.current_token.type == TokenType.LBRACE:
++            self.eat(TokenType.LBRACE)  # 读取左大括号
++            self.statement_list()  # 解析多条语句
++            self.eat(TokenType.RBRACE)  # 读取右大括号
++        else:
++            self.single_statement()  # 处理单独的语句
++
++    def expression(self):
++        """解析表达式"""
++        self.term()  # 解析第一项
++        while self.current_token is not None and self.current_token.type in {TokenType.PLUS, TokenType.MINUS}:
++            op = self.current_token.type
++            self.advance()
++            self.term()  # 解析右侧项
++
++    def term(self):
++        """解析项"""
++        self.factor()  # 解析因子
++        while self.current_token is not None and self.current_token.type in {TokenType.MUL, TokenType.DIV}:
++            op = self.current_token.type
++            self.advance()
++            self.factor()  # 解析右侧因子
++
++    def factor(self):
++        """解析因子"""
++        if self.current_token.type == TokenType.ID:
++            self.eat(TokenType.ID)  # 读取标识符
++        elif self.current_token.type == TokenType.INT_COUNT:
++            self.eat(TokenType.INT_COUNT)  # 读取整型常量
++        elif self.current_token.type == TokenType.FLOAT_COUNT:
++            self.eat(TokenType.FLOAT_COUNT)  # 读取浮点常量
++        elif self.current_token.type == TokenType.LPAREN:
++            self.eat(TokenType.LPAREN)  # 读取左括号
++            self.expression()  # 解析表达式
++            self.eat(TokenType.RPAREN)  # 读取右括号
++
++    def boolean_expression(self):
++        """解析布尔表达式"""
++        self.eat(TokenType.ID)  # 假设布尔表达式以ID开始
++        if self.current_token.type in {TokenType.ASSIGN, TokenType.OR_LONG, TokenType.AND_LONG, TokenType.NOT}:
++            self.eat(self.current_token.type)  # 处理布尔运算
++            self.eat(TokenType.ID)  # 读取布尔表达式的ID
++
++
++# 使用示例
++if __name__ == "__main__":
++    tokens = [
++        Token(TokenType.MAIN, "main"),
++        Token(TokenType.LPAREN, "("),
++        Token(TokenType.RPAREN, ")"),
++        Token(TokenType.LBRACE, "{"),
++        Token(TokenType.INT, "int"),
++        Token(TokenType.ID, "a"),
++        Token(TokenType.SEMICOLON, ";"),
++        Token(TokenType.IF, "if"),
++        Token(TokenType.LPAREN, "("),
++        Token(TokenType.ID, "a"),
++        Token(TokenType.ASSIGN, "="),
++        Token(TokenType.INT_COUNT, 3),
++        Token(TokenType.RPAREN, ")"),
++        Token(TokenType.ID, "a"),
++        Token(TokenType.ASSIGN, "="),
++        Token(TokenType.ID, "a"),
++        Token(TokenType.PLUS, "+"),
++        Token(TokenType.INT_COUNT, 1),
++        Token(TokenType.SEMICOLON, ";"),
++        Token(TokenType.RBRACE, "}"),
++    ]
++
++    parser = Parser(tokens)
++    try:
++        parser.program()  # 开始解析程序
++        print("语法分析成功!")
++    except Exception as e:
++        print(f"Error occurred: {e}")
+Index: ../../py学习/py_study/字符串的去重操作.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/字符串的去重操作.py b/../../py学习/py_study/字符串的去重操作.py
+new file mode 100644
+--- /dev/null	(date 1724899247685)
++++ b/../../py学习/py_study/字符串的去重操作.py	(date 1724899247685)
+@@ -0,0 +1,21 @@
++s='helloworldhelloworlddadfdfdeoodllffe'
++
++#字符串拼接及not in
++new_s=''
++for item in s:
++    if item not in new_s:
++        new_s+=item  #拼接操作
++print(new_s)
++
++#(2)使用索引＋not in
++new_s2=''
++for i in range(len(s)):
++    if s[i] not in new_s2:
++        new_s2+=s[i]
++print(new_s2)
++
++#通过集合去重+列表排序
++new_s3=set(s)
++lst=list(new_s3)
++lst.sort(key=s.index)
++print(''.join(lst))
+\ No newline at end of file
+Index: ../../py学习/py_study/time模块的使用.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/time模块的使用.py b/../../py学习/py_study/time模块的使用.py
+new file mode 100644
+--- /dev/null	(date 1725538056791)
++++ b/../../py学习/py_study/time模块的使用.py	(date 1725538056791)
+@@ -0,0 +1,31 @@
++import time
++now=time.time() #得到当前的时间戳
++print(now)
++
++obj=time.localtime() #得到struct_time对象
++print(obj)
++
++obj2=time.localtime(60)
++print(obj2)
++print('年份：',obj.tm_year)
++print('月份：',obj.tm_mon)
++print('日期：',obj.tm_mday)
++print('时：',obj.tm_hour)
++print('分：',obj.tm_min)
++print('秒',obj.tm_sec)
++print('星期：',obj.tm_wday) # [0,6],3表示是星期四
++print('今年的多少天：',obj.tm_yday)
++
++print(time.ctime()) #时间戳对应的易读的字符串
++
++#日期时间格式化
++print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime()))
++
++print('月份的名称：',time.strftime('%B',time.localtime()))
++print('星期的名称：',time.strftime('%A',time.localtime()))
++
++#字符串转成struct_time
++print(time.strptime('2008-08-08','%Y-%m-%d'))
++
++time.sleep(10) #程序暂停10秒
++print('helloworld') #10秒后再输出helloworld
+\ No newline at end of file
+Index: ../../py学习/py_study/列表生成式.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/列表生成式.py b/../../py学习/py_study/列表生成式.py
+new file mode 100644
+--- /dev/null	(date 1724568098929)
++++ b/../../py学习/py_study/列表生成式.py	(date 1724568098929)
+@@ -0,0 +1,13 @@
++import random
++lst=[item for item in range(1,11)]
++print(lst)
++
++lst=[item*item for item in range(1,11)]
++print(lst)
++
++lst=[random.randint(1,100) for _ in range(10)]
++print(lst)
++
++#从列表中选择符合条件的元素组成新的列表
++lst=[i for i in range(10) if i%2==0]
++print(lst)
+\ No newline at end of file
+Index: ../../py学习/py_study/字符串中大小写字母转换.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/字符串中大小写字母转换.py b/../../py学习/py_study/字符串中大小写字母转换.py
+new file mode 100644
+--- /dev/null	(date 1725349018014)
++++ b/../../py学习/py_study/字符串中大小写字母转换.py	(date 1725349018014)
+@@ -0,0 +1,14 @@
++def lower_upper(x):
++    lst=[]
++    for item in x:
++        if 'A'<=item<='Z':
++            lst.append(chr(ord(item)+32))
++        elif 'a'<=item<='z':
++            lst.append(chr(ord(item)-32))
++        else:
++            lst.append(item)
++
++    return ''.join(lst)
++
++s=input('请输入一个字符串:')
++print(lower_upper(s))
+\ No newline at end of file
+Index: .idea/inspectionProfiles/profiles_settings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+new file mode 100644
+--- /dev/null	(date 1729671285622)
++++ b/.idea/inspectionProfiles/profiles_settings.xml	(date 1729671285622)
+@@ -0,0 +1,6 @@
++<component name="InspectionProjectProfileManager">
++  <settings>
++    <option name="USE_PROJECT_PROFILE" value="false" />
++    <version value="1.0" />
++  </settings>
++</component>
+\ No newline at end of file
+Index: ../../py学习/py_study_socket/.idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study_socket/.idea/modules.xml b/../../py学习/py_study_socket/.idea/modules.xml
+new file mode 100644
+--- /dev/null	(date 1726052657556)
++++ b/../../py学习/py_study_socket/.idea/modules.xml	(date 1726052657556)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/py_study_socket.iml" filepath="$PROJECT_DIR$/.idea/py_study_socket.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1729680418742)
++++ b/.idea/misc.xml	(date 1729680418742)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Black">
++    <option name="sdkName" value="Python 3.12 (数据库实验)" />
++  </component>
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11" project-jdk-type="Python SDK" />
++</project>
+\ No newline at end of file
+Index: ../../py学习/py_study/sub函数与split函数的使用.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/sub函数与split函数的使用.py b/../../py学习/py_study/sub函数与split函数的使用.py
+new file mode 100644
+--- /dev/null	(date 1724902742978)
++++ b/../../py学习/py_study/sub函数与split函数的使用.py	(date 1724902742978)
+@@ -0,0 +1,10 @@
++import re
++pattern='黑客|破解|反爬'
++s='我想学习Python，想破解一些VIP视频，Python可以实现无底线反爬吗？'
++new_s=re.sub(pattern,'XXX',s)
++print(new_s)
++
++s2='https://www.baidu.com/s?wd=ysj&rsv_spt=1'
++pattern2='[?|&]'
++lst=re.split(pattern2,s2)
++print(lst)
+\ No newline at end of file
+Index: .idea/数据库实验.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/数据库实验.iml b/.idea/数据库实验.iml
+new file mode 100644
+--- /dev/null	(date 1729680418735)
++++ b/.idea/数据库实验.iml	(date 1729680418735)
+@@ -0,0 +1,10 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="PYTHON_MODULE" version="4">
++  <component name="NewModuleRootManager">
++    <content url="file://$MODULE_DIR$">
++      <excludeFolder url="file://$MODULE_DIR$/.venv" />
++    </content>
++    <orderEntry type="jdk" jdkName="Python 3.11" jdkType="Python SDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100644
+--- /dev/null	(date 1729671265245)
++++ b/.idea/.gitignore	(date 1729671265245)
+@@ -0,0 +1,8 @@
++# Default ignored files
++/shelf/
++/workspace.xml
++# Editor-based HTTP Client requests
++/httpRequests/
++# Datasource local storage ignored files
++/dataSources/
++/dataSources.local.xml
+Index: ../../py学习/py_study_socket/TCP客户端代码的编写.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study_socket/TCP客户端代码的编写.py b/../../py学习/py_study_socket/TCP客户端代码的编写.py
+new file mode 100644
+--- /dev/null	(date 1725970594990)
++++ b/../../py学习/py_study_socket/TCP客户端代码的编写.py	(date 1725970594990)
+@@ -0,0 +1,20 @@
++from socket import socket
++
++# 1.创建socket对象
++client_socket=socket()
++
++# 2.我的IP地址和主机（服务器）端口
++ip='127.0.0.1'
++port=8887
++client_socket.connect((ip,port))
++print('-------------与服务器的连接建立成功---------------')
++
++# 3.发送数据
++client_socket.send('Welcome to python world'.encode('utf-8'))
++
++# 4.关闭
++client_socket.close()
++
++print('发送完毕')
++
++#先运行服务器让其等待数据 再运行客户端
+\ No newline at end of file
+Index: ../../py学习/py_study/Random模块的使用.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/Random模块的使用.py b/../../py学习/py_study/Random模块的使用.py
+new file mode 100644
+--- /dev/null	(date 1725536444922)
++++ b/../../py学习/py_study/Random模块的使用.py	(date 1725536444922)
+@@ -0,0 +1,27 @@
++#导入
++import random
++#设置随机数的种子
++random.seed(10)
++print(random.random())
++print(random.random()) #random()产生0-1之间的随机数 [0.0,1.0)
++#因为设置了种子，刷新重新生成后生成的随机数也不变
++print('-'*40)
++random.seed(10)
++print(random.randint(1,100)) # [1,100]
++
++for i in range(10):
++    print(random.randrange(1,10,3))
++    # [m,n) 步长为k，m->start-->1,n->stop-->10,k->step-->3
++
++print(random.uniform(1,100)) # [a,b]随机小数
++
++lst=[i for i in range(1,11)]
++
++print(random.choice(lst)) #lst是列表，称为序列
++
++#随机的排序
++random.shuffle(lst)
++print(lst)
++
++random.shuffle(lst)
++print(lst)
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1729671285646)
++++ b/.idea/vcs.xml	(date 1729671285646)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$/../../" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: ../../py学习/py_study/使用multiprocessing模块创建进程.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/使用multiprocessing模块创建进程.py b/../../py学习/py_study/使用multiprocessing模块创建进程.py
+new file mode 100644
+--- /dev/null	(date 1726372976846)
++++ b/../../py学习/py_study/使用multiprocessing模块创建进程.py	(date 1726372976846)
+@@ -0,0 +1,22 @@
++from multiprocessing import Process
++import os,time
++def test():
++    print(f'我是子进程，我的PIP地址是：{os.getpid()},我的父进程是：{os.getppid()}')
++    time.sleep(1)
++
++if __name__=='__main__':
++    print('主进程开始执行')
++
++    lst=[]
++    #创建5个子进程
++    for i in range(5):
++        p=Process(target=test)
++        p.start()
++
++        lst.append(p)
++
++    #遍历lst
++    for item in lst:
++        item.join() # 阻塞主进程
++
++    print('主进程执行结束')
+Index: ../../py学习/py_study/关键字传参的使用.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/关键字传参的使用.py b/../../py学习/py_study/关键字传参的使用.py
+new file mode 100644
+--- /dev/null	(date 1725003054268)
++++ b/../../py学习/py_study/关键字传参的使用.py	(date 1725003054268)
+@@ -0,0 +1,10 @@
++def happy_birthday(name,age):
++    print('祝'+name+'生日快乐')
++    print(str(age)+'岁生日快乐')
++
++#关键字传参
++happy_birthday(age=18,name='娟子姐')
++
++happy_birthday('陈梅梅',age=18) #正常执行，位置传参，也可以使用关键字传参
++
++# happy_birthday(name='陈梅梅',18)  出错
+\ No newline at end of file
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100644
+--- /dev/null	(date 1729671285610)
++++ b/.idea/modules.xml	(date 1729671285610)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/数据库实验.iml" filepath="$PROJECT_DIR$/.idea/数据库实验.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: ../../py学习/py_study/爬取百度LOGO图片.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/爬取百度LOGO图片.py b/../../py学习/py_study/爬取百度LOGO图片.py
+new file mode 100644
+--- /dev/null	(date 1725760107524)
++++ b/../../py学习/py_study/爬取百度LOGO图片.py	(date 1725760107524)
+@@ -0,0 +1,9 @@
++import requests
++url='https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png'
++resp=requests.get(url)
++
++#保存到本地
++with open('logo.pong','wb')as file:
++    file.write(resp.content)
++
++input()
+\ No newline at end of file
+Index: ../../py学习/py_study/PIL模块图像的处理.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/PIL模块图像的处理.py b/../../py学习/py_study/PIL模块图像的处理.py
+new file mode 100644
+--- /dev/null	(date 1725760107529)
++++ b/../../py学习/py_study/PIL模块图像的处理.py	(date 1725760107529)
+@@ -0,0 +1,9 @@
++from PIL import Image
++
++#加载图片
++im=Image.open('1.jpg')
++
++r,g,b=im.split()
++
++om=Image.merge(mode='RGB',bands=(r,b,g))
++om.save('new_1.jpg')
+Index: ../../py学习/py_study_socket/.idea/inspectionProfiles/Project_Default.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study_socket/.idea/inspectionProfiles/Project_Default.xml b/../../py学习/py_study_socket/.idea/inspectionProfiles/Project_Default.xml
+new file mode 100644
+--- /dev/null	(date 1726052657313)
++++ b/../../py学习/py_study_socket/.idea/inspectionProfiles/Project_Default.xml	(date 1726052657313)
+@@ -0,0 +1,12 @@
++<component name="InspectionProjectProfileManager">
++  <profile version="1.0">
++    <option name="myName" value="Project Default" />
++    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
++      <option name="ignoredIdentifiers">
++        <list>
++          <option value="list.*" />
++        </list>
++      </option>
++    </inspection_tool>
++  </profile>
++</component>
+\ No newline at end of file
+Index: ../../py学习/py_study/元组元素的访问与遍历.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/元组元素的访问与遍历.py b/../../py学习/py_study/元组元素的访问与遍历.py
+new file mode 100644
+--- /dev/null	(date 1724676963988)
++++ b/../../py学习/py_study/元组元素的访问与遍历.py	(date 1724676963988)
+@@ -0,0 +1,15 @@
++t=('python','hello','world')
++#根据索引访问元素
++print(t[0])
++t2=t[0:3:2]
++print(t2)
++
++#元组的遍历
++for item in t:
++    print(item)
++
++for i in range(len(t)):
++    print(i,t[i])
++
++for index,item in enumerate(t,11):
++    print(index,item)
+\ No newline at end of file
+Index: ../../py学习/py_study/文件的复制.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/文件的复制.py b/../../py学习/py_study/文件的复制.py
+new file mode 100644
+--- /dev/null	(date 1725890157049)
++++ b/../../py学习/py_study/文件的复制.py	(date 1725890157049)
+@@ -0,0 +1,15 @@
++def copy(src,new_path):
++    #文件的复制就是边读边写操作
++    #（1）打开源文件
++    file1=open(src,'rb')
++    file2=open(new_path,'wb')
++    s=file1.read()
++    file2.write(s)
++    file2.close()
++    file1.close()
++    #先打开的后关，后打开的先关
++
++if __name__=='__main__':
++    src='./logo.pong'
++    new_path='./copy_logo.png'
++    copy(src, new_path)
+\ No newline at end of file
+Index: ../../py学习/py_study/pyecharts图表绘制.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/pyecharts图表绘制.py b/../../py学习/py_study/pyecharts图表绘制.py
+new file mode 100644
+--- /dev/null	(date 1725693999023)
++++ b/../../py学习/py_study/pyecharts图表绘制.py	(date 1725693999023)
+@@ -0,0 +1,13 @@
++from pyecharts.charts import Pie
++from pyecharts import options as opts
++
++attr = ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
++v = [5, 20, 36, 10, 75, 90]
++
++pie = (
++    Pie()
++    .add("", [list(z) for z in zip(attr, v)])
++    .set_global_opts(title_opts=opts.TitleOpts(title="饼图数据示例"))
++    .set_series_opts(label_opts=opts.LabelOpts(formatter="{b}: {c}"))
++)
++pie.render('饼图.html')
+Index: ../../py学习/py_study/字符串的格式化.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/字符串的格式化.py b/../../py学习/py_study/字符串的格式化.py
+new file mode 100644
+--- /dev/null	(date 1724893941153)
++++ b/../../py学习/py_study/字符串的格式化.py	(date 1724893941153)
+@@ -0,0 +1,14 @@
++#（1）使用占位符进行格式化
++name='马冬梅'
++age=18
++score=98.5
++print('姓名：%s,年龄：%d,成绩：%f'%(name,age,score))
++print('姓名：%s,年龄：%d,成绩：%.1f'%(name,age,score))
++
++#(2)f-string
++print(f'姓名：{name},年龄：{age},成绩:{score}')
++
++#(3)使用字符串的format方法
++print('姓名：{0}，年龄：{1}，成绩：{2}'.format(name,age,score))
++#0,1,2对应的是format当中的索引位置
++
+Index: ../../py学习/py_study/os模块的使用.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/os模块的使用.py b/../../py学习/py_study/os模块的使用.py
+new file mode 100644
+--- /dev/null	(date 1725952891341)
++++ b/../../py学习/py_study/os模块的使用.py	(date 1725952891341)
+@@ -0,0 +1,10 @@
++import os
++print('当前的工作路径：',os.getcwd())
++lst=os.listdir()
++print('当前路径下的所有目录及文件：',lst)
++print('指定路径下所有目录文件：',os.listdir('D:/'))
++#创建目录
++# os.mkdir('好好学习')#如果要创建的文件夹存在程序会报错
++# os.makedirs('./aa//bb')
++# os.rmdir('./好好学习')#如果删除的目录不存在，会报错
++os.removedirs('./aa/bb')
+Index: ../../py学习/py_study/示例.从Excel文件中读取数据.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/示例.从Excel文件中读取数据.py b/../../py学习/py_study/示例.从Excel文件中读取数据.py
+new file mode 100644
+--- /dev/null	(date 1725675906930)
++++ b/../../py学习/py_study/示例.从Excel文件中读取数据.py	(date 1725675906930)
+@@ -0,0 +1,16 @@
++import openpyxl
++
++#打开工作簿
++workbook=openpyxl.load_workbook('景区天气.xlsx')
++#选择要操作的工作表
++sheet=workbook['景区天气']
++#表格数据是二维列表，先遍历的是行，后遍历的是列
++lst=[] #存储的是行数据
++for row in sheet.rows:
++    sublst=[]#存储单元格数据
++    for cell in row: #cell单元格
++        sublst.append(cell.value)
++    lst.append(sublst)
++
++for item in lst:
++    print(item)
+\ No newline at end of file
+Index: ../../py学习/py_study/字符串的相关处理方法.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/字符串的相关处理方法.py b/../../py学习/py_study/字符串的相关处理方法.py
+new file mode 100644
+--- /dev/null	(date 1724850023630)
++++ b/../../py学习/py_study/字符串的相关处理方法.py	(date 1724850023630)
+@@ -0,0 +1,29 @@
++#大小写转换
++s1='HelloWorld'
++new_s2=s1.lower()
++print(s1,new_s2)
++
++new_s3=s1.upper()
++print(s1,new_s3)
++
++#字符串的分隔
++e_mail='ysj@126.com'
++lst=e_mail.split('@')
++
++print('邮箱名：',lst[0],'邮件服务器域名：',lst[1])
++
++print(s1.count('o'))#字母o在字符串中出现的次数
++
++#检索操作
++print(s1.find('o'))#o在字符串中首次出现的位置
++print(s1.find('p'))#-1,没有找到
++# print(s1.index('p')) 会报错
++
++#判断前缀和后缀
++print(s1.startswith('H'))
++print(s1.startswith('P'))
++
++print('demo.py'.endswith('py'))
++
++
++
+Index: ../../py学习/py_study/模拟12306火车票订票流程.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/模拟12306火车票订票流程.py b/../../py学习/py_study/模拟12306火车票订票流程.py
+new file mode 100644
+--- /dev/null	(date 1725760278812)
++++ b/../../py学习/py_study/模拟12306火车票订票流程.py	(date 1725760278812)
+@@ -0,0 +1,24 @@
++dict_ticket={
++    'G1569':['北京南-天津南','18:06','18:39','00:33'],
++    'G1567':['北京南-天津南','18:15','18:49','00:34'],
++    'G8971':['北京南-天津西','18:20','19:19','00:59'],
++    'G203':['北京南-天津南','18:35','19:09','00:34']
++}
++print("车次\t\t出发站-到达站\t出发时间\t到达时间\t历时时长")
++for key in dict_ticket.keys():
++    print(key,end='\t')
++    for value in dict_ticket[key]:
++        print (value,end='\t')
++    print()
++
++ticket=input('请输入要购买的车次：')
++
++info=dict_ticket.get(ticket,'车次不存在')
++
++if info=='车次不存在':
++    print('您所输入的车次不存在，购买失败!')
++else:
++    name=input('请输入乘车人，如果是多位乘车人使用逗号分隔：')
++    print(f'您已购买了{ticket} {info[0]} {info[1]}开，请{name}尽快取纸质车票。【铁路客服】')
++
++input()
+\ No newline at end of file
+Index: ../../py学习/py_study/默认值参数的使用.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/默认值参数的使用.py b/../../py学习/py_study/默认值参数的使用.py
+new file mode 100644
+--- /dev/null	(date 1725003502930)
++++ b/../../py学习/py_study/默认值参数的使用.py	(date 1725003502930)
+@@ -0,0 +1,17 @@
++def happy_birthday(name='娟子姐',age=18):
++    print('祝'+name+'生日快乐')
++    print(str(age)+'岁生日快乐')
++
++happy_birthday() #不用传参
++happy_birthday('陈梅梅') #位置传参
++happy_birthday(age=19) #关键字传参，name采用默认值
++
++# happy_birthday(19) #报错，如果使用位置传参的方式，19被传给了name
++
++def fun(a,b=20):
++    pass
++
++# def fun2(a=20,b):
++#     pass
++# 会报错            当位置参数和默认值参数同时存在，应该遵循位置参数在前，默认值参数在后
++
+Index: ../../py学习/py_study/华为笔记本评论的词云图--jieba与wordcloud.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/华为笔记本评论的词云图--jieba与wordcloud.py b/../../py学习/py_study/华为笔记本评论的词云图--jieba与wordcloud.py
+new file mode 100644
+--- /dev/null	(date 1725778298489)
++++ b/../../py学习/py_study/华为笔记本评论的词云图--jieba与wordcloud.py	(date 1725778298489)
+@@ -0,0 +1,19 @@
++import jieba
++from wordcloud import WordCloud
++#读取数据
++with open('华为笔记本.txt','r',enconding='utf-8') as file:
++    s=file.read()
++
++#中文分词
++lst=jieba.lcut(s)
++#排除词
++stopword=['运行速度','屏幕效果','散热性能','外形外观','轻薄程度','其他特色']
++
++txt=''.join(lst)
++#绘制词云图
++wordcloud=WordCloud(background_color='while',font_path='msyh.ttc',stopwords=stopword,width=800,height=600)
++
++#由txt生成词云图
++wordcloud.generate(txt)
++#保存图片
++wordcloud.to_file('华为笔记本评价词云图.png')
+\ No newline at end of file
+Index: ../../py学习/py_study/集合的相关操作.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/集合的相关操作.py b/../../py学习/py_study/集合的相关操作.py
+new file mode 100644
+--- /dev/null	(date 1724747114086)
++++ b/../../py学习/py_study/集合的相关操作.py	(date 1724747114086)
+@@ -0,0 +1,24 @@
++s={10,20,30}
++
++s.add(100)
++print(s) #添加元素
++
++s.remove(20)
++print(s) #删除元素
++
++# s.clear()
++# print(s)
++
++#集合的遍历操作
++for item in s:
++    print(item)
++
++for index,item in enumerate(s,6):
++    print(index,item)
++
++#集合的生成式
++s={i for i in range(1,10)}
++print(s)
++
++s={i for i in range(1,10) if i%2==1}
++print(s)
+\ No newline at end of file
+Index: ../../py学习/py_study/使用面向对象思想实现乐器弹奏.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/使用面向对象思想实现乐器弹奏.py b/../../py学习/py_study/使用面向对象思想实现乐器弹奏.py
+new file mode 100644
+--- /dev/null	(date 1725521094175)
++++ b/../../py学习/py_study/使用面向对象思想实现乐器弹奏.py	(date 1725521094175)
+@@ -0,0 +1,26 @@
++class Instrument:
++    def make_sound(self):
++        pass
++
++class Erhu(Instrument):
++    def make_sound(self):
++        print('二胡在弹奏')
++
++class Piano(Instrument):
++    def make_sound(self):
++        print('钢琴在弹奏')
++
++class Violin(Instrument):
++    def make_sound(self):
++        print('小提琴在弹奏')
++
++def play(obj):
++    obj.make_sound()
++
++er=Erhu()
++piano=Piano()
++vio=Violin()
++
++play(er)
++play(piano)
++play(vio)
+\ No newline at end of file
+Index: ../../py学习/py_study/获取景区的天气预报.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/获取景区的天气预报.py b/../../py学习/py_study/获取景区的天气预报.py
+new file mode 100644
+--- /dev/null	(date 1725671762413)
++++ b/../../py学习/py_study/获取景区的天气预报.py	(date 1725671762413)
+@@ -0,0 +1,32 @@
++import re
++
++import requests
++url='https://www.weather.com.cn/weather1d/101010100.shtml' #爬虫打开的浏览器上的网页
++resp=requests.get(url) #打开浏览器并打开网址
++
++#设置一下编码格式
++resp.encoding='utf-8'
++# print(resp.text)
++
++city=re.findall('<span class="name">([\u4e00-\u9fa5]*)</span>',resp.text)
++print(city)
++
++weather=re.findall('<span class="weather">([\u4e00-\u9fa5]*)</span>',resp.text)
++print(weather)
++
++wd=re.findall('<span class="wd">(.*)</span>',resp.text)
++print(wd)
++
++zs=re.findall('<span class="zs">([\u4e00-\u9fa5]*)</span>',resp.text)
++print(zs)
++
++print('-'*50)
++
++lst=[]
++#zip打包
++for a,b,c,d in zip(city,weather,wd,zs):
++    lst.append([a,b,c,d])
++print(lst)
++print('-'*100)
++for item in lst:
++    print(item)
+\ No newline at end of file
+Index: ../../py学习/py_study/迭代器操作函数的使用.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/迭代器操作函数的使用.py b/../../py学习/py_study/迭代器操作函数的使用.py
+new file mode 100644
+--- /dev/null	(date 1725108102644)
++++ b/../../py学习/py_study/迭代器操作函数的使用.py	(date 1725108102644)
+@@ -0,0 +1,48 @@
++lst=[54,56,77,4,567,34]
++asc_lst=sorted(lst)
++desc_lst=sorted(lst,reverse=True)
++print('原列表：',lst)
++print('升序：',asc_lst)
++print('降序：',desc_lst)
++
++#反向
++new_lst=reversed(lst) #结果不是列表，是一个迭代器对象
++print(list(new_lst))
++
++#zip
++x=['a','b','c','d']
++y=[10,20,30,40,50]
++zipobj=zip(x,y)
++print(type(zipobj))
++print(list(zipobj))
++
++#enumerate
++enum=enumerate(y,start=1)
++print(type(enum))
++print(tuple(enum))
++
++#all
++lst2=[10,20,'',30]
++print(all(lst2))
++print(all(lst)) #当列表中的布尔值都为true才为true
++
++#any
++print(any(lst2)) #列表中只要有一个为True结果就为True
++
++#next
++print(next(zipobj))
++print(next(zipobj))
++print(next(zipobj))
++
++def fun(num):
++    return num%2==1 # 可能是True False
++
++obj=filter(fun,range(10))
++print(list(obj))
++
++def upper(x):
++    return x.upper()
++
++new_lst2=['hello','world','python']
++obj2=map(upper,new_lst2)
++print(list(obj2))
+\ No newline at end of file
+Index: ../../py学习/py_study/一维数据和二维数据的存储.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/一维数据和二维数据的存储.py b/../../py学习/py_study/一维数据和二维数据的存储.py
+new file mode 100644
+--- /dev/null	(date 1725950745988)
++++ b/../../py学习/py_study/一维数据和二维数据的存储.py	(date 1725950745988)
+@@ -0,0 +1,38 @@
++#存储和读取一维数据
++def my_write():
++    # 一维数据，可以使用列表，元组或集合
++    lst=['张三','李四','王五','陈六','麻七']
++    with open('student.csv','w',encoding='utf-8') as file:
++        file.write(','.join(lst)) #将列表转成字符串
++def my_read():
++    with open('student.csv','r',encoding='utf-8') as file:
++        s=file.read()
++        lst=s.split(',')
++        print(lst)
++
++
++#存储和读取二维数据
++def my_write_table():
++    lst=[
++        ['商品名称','单价','采购数量'],
++        ['水杯','98.5','20'],
++        ['鼠标','89','100']
++    ]
++    with open('table.csv','w',encoding='utf-8') as file:
++        for row in lst:
++            file.write(','.join(row))
++            file.write('\n')
++
++def my_read_table():
++    data=[]
++    with open('table.csv','r',encoding='utf-8') as file:
++        lst=file.readlines()
++        for item in lst:
++            new_lst=item[:len(item)-1].split(',')
++            data.append(new_lst)
++        print(data)
++if __name__=='__main__':
++    # my_write()
++    # my_read()
++    my_write_table()
++    my_read_table()
+\ No newline at end of file
+Index: ../../py学习/py_study/集合的操作符.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/集合的操作符.py b/../../py学习/py_study/集合的操作符.py
+new file mode 100644
+--- /dev/null	(date 1724746782280)
++++ b/../../py学习/py_study/集合的操作符.py	(date 1724746782280)
+@@ -0,0 +1,8 @@
++A={10,20,30,40,50}
++B={30,50,88,76,20}
++
++print(A&B) #交集
++print(A|B) #并集
++print(A-B) #差集
++print(A^B) #补集
++
+Index: ../../py学习/py_study/判断是否构成三角形.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/判断是否构成三角形.py b/../../py学习/py_study/判断是否构成三角形.py
+new file mode 100644
+--- /dev/null	(date 1725001161971)
++++ b/../../py学习/py_study/判断是否构成三角形.py	(date 1725001161971)
+@@ -0,0 +1,10 @@
++try:
++    a = int(input('请输入第一条边长：'))
++    b = int(input('请输入第二条边长：'))
++    c = int(input('请输入第三条边长：'))
++    if a+b>c and a+c>b and b+c>a:
++        print('三角形的边长为：',a,b,c)
++    else:
++        raise Exception(f'{a},{b},{c}不能构成三角形')
++except Exception as e:
++    print(e)
+\ No newline at end of file
+Index: ../../py学习/py_study/数学函数的使用.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/数学函数的使用.py b/../../py学习/py_study/数学函数的使用.py
+new file mode 100644
+--- /dev/null	(date 1725106273244)
++++ b/../../py学习/py_study/数学函数的使用.py	(date 1725106273244)
+@@ -0,0 +1,11 @@
++print('绝对值：',abs(-100),abs(100),abs(0))
++print('商和余数：',divmod(13,4))
++print('求和：',sum([10,34,45]))
++print('x的y次幂：',pow(2,3))
++
++#四舍五入
++print(round(3.1415926))
++print(round(3.5))
++print(round(3.1415926,2))#保留两位小数
++print(round(314.15926,-1))#314,-1位，对个位进行四舍五入
++print(round(314.15926,-2))#对十位进行四舍五入
+\ No newline at end of file
+Index: ../../py学习/py_study/千年虫.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/千年虫.py b/../../py学习/py_study/千年虫.py
+new file mode 100644
+--- /dev/null	(date 1724750855410)
++++ b/../../py学习/py_study/千年虫.py	(date 1724750855410)
+@@ -0,0 +1,7 @@
++lst=[88,89,90,98,00,99]
++for i in range(len(lst)):
++    if lst[i]==00:
++        lst[i]=eval(f'200{lst[i]}')
++    else:
++        lst[i]=eval(f'19{lst[i]}')
++print(lst)
+\ No newline at end of file
+Index: ../../py学习/py_study/可变参数的使用.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/可变参数的使用.py b/../../py学习/py_study/可变参数的使用.py
+new file mode 100644
+--- /dev/null	(date 1725102821630)
++++ b/../../py学习/py_study/可变参数的使用.py	(date 1725102821630)
+@@ -0,0 +1,27 @@
++#个数可变的位置参数
++def fun(*para):
++    print(type(para))
++    for item in para:
++        print(item)
++
++#调用
++fun(10,20,30,40)
++fun(10)
++fun(20,30)
++fun([11,22,33,44]) #实际上传递的是一个参数
++
++#在调用时，参数前加一颗星会将列表进行解包
++fun(*[11,22,33,44])
++
++#个数可变的关键字参数
++def fun2(**kwpara):
++    print(type(kwpara))
++    for key,value in kwpara.items():
++        print(key,value)
++
++fun2(name='娟子姐',age=18,height=170)
++
++d={'name':'娟子姐','age':18,'height':170}
++#fun2(d) 会报错,因为传入的是位置参数
++
++fun2(**d)
+Index: ../../py学习/py_study/字符串的拼接操作.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/字符串的拼接操作.py b/../../py学习/py_study/字符串的拼接操作.py
+new file mode 100644
+--- /dev/null	(date 1724898845257)
++++ b/../../py学习/py_study/字符串的拼接操作.py	(date 1724898845257)
+@@ -0,0 +1,17 @@
++s1='hello'
++s2='world'
++#使用+号进行拼接
++print(s1+s2)
++
++#使用字符串的join()方法
++print(''.join([s1,s2]))
++
++print('*'.join(['hello','world','python','java','php']))
++
++#直接拼接
++print('hello''world')
++
++#使用格式化字符串进行拼接
++print('%s%s'%(s1,s2))
++print(f'{s1}{s2}')
++print('{0}{1}'.format(s1,s2))
+\ No newline at end of file
+Index: ../../py学习/py_study/文件的写入操作.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/文件的写入操作.py b/../../py学习/py_study/文件的写入操作.py
+new file mode 100644
+--- /dev/null	(date 1725779912316)
++++ b/../../py学习/py_study/文件的写入操作.py	(date 1725779912316)
+@@ -0,0 +1,17 @@
++def my_write(s):
++     file=open('b.txt','a',encoding='utf-8') # a-->有就在尾部追加内容，无就创建该文件
++     file.write(s)
++     file.write('\n')
++     file.close()
++
++def my_write_list(file,lst):
++    f=open(file,'a',encoding='utf-8')
++    f.writelines(lst)
++    f.close()
++
++
++if __name__=='__main__':
++    # my_write('伟大的中国梦')
++    # my_write('北京欢迎你')
++    lst=['姓名\t','年龄\t','成绩\n','张三\t','30\t','98']
++    my_write_list('b.txt',lst)
+\ No newline at end of file
+Index: ../../py学习/py_study/字典的相关操作方法.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/字典的相关操作方法.py b/../../py学习/py_study/字典的相关操作方法.py
+new file mode 100644
+--- /dev/null	(date 1724745314357)
++++ b/../../py学习/py_study/字典的相关操作方法.py	(date 1724745314357)
+@@ -0,0 +1,35 @@
++d={1001:'李梅',1002:'王华',1003:'张峰'}
++print(d)
++
++#向字典中添加元素
++d[1004]='张丽丽' #直接使用赋值运算符向字典中添加元素
++print(d)
++
++#获取字典中所有的key
++keys=d.keys()
++print(keys)
++print(list(keys))
++print(tuple(keys))
++
++#获取字典中所有的值
++values=d.values()
++print(values)
++print(list(values))
++print(tuple(values))
++
++#如果将字典中的数据转成key-value的形式，以元组的方式进行展现
++lst=list(d.items())
++print(lst)
++
++d=dict(lst)
++print(d)
++
++# 使用pop函数删除元素
++print(d.pop(1001))
++print(d)
++
++print(d.pop(1008,'不存在'))
++
++#随机删除
++print(d.popitem())
++print(d)
+\ No newline at end of file
+Index: ../../py学习/py_study/timedelta的使用.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/timedelta的使用.py b/../../py学习/py_study/timedelta的使用.py
+new file mode 100644
+--- /dev/null	(date 1725669030278)
++++ b/../../py学习/py_study/timedelta的使用.py	(date 1725669030278)
+@@ -0,0 +1,11 @@
++from datetime import datetime
++from datetime import timedelta
++
++#创建两个datetime类型的对象
++delta=datetime(2028,10,1)-datetime(2028,5,1)
++print(delta)
++
++td1=timedelta(10)
++print('创建一个10天的delta对象：',td1)
++td2=timedelta(10,11)
++print('创建一个10天11秒的对象：',td2)
+\ No newline at end of file
+Index: ../../py学习/py_study/文件的读取操作.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/文件的读取操作.py b/../../py学习/py_study/文件的读取操作.py
+new file mode 100644
+--- /dev/null	(date 1725889858722)
++++ b/../../py学习/py_study/文件的读取操作.py	(date 1725889858722)
+@@ -0,0 +1,22 @@
++def my_read(filename):
++    #(1)打开
++    file=open(filename,'w+',encoding='utf-8')
++
++    file.write('你好啊')#写入完成，文件的指针在最后
++    #seek 修改文件指针的位置
++    file.seek(0)
++    #读取
++    # s=file.read()#读取全部
++    # s=file.read(2)#读取两个字符
++    # s=file.readline()#读取一行数据
++    # s=file.readline(2)#读取一行中的两个字符
++    # s=file.readlines()#读取所有，一行为列表中的一个元素，s是个列表类型
++
++    #读取"好啊"
++    file.seek(3)#3个字节，utf-8中一个中文占3个字节
++    s=file.read()
++    print(s)
++
++    file.close()
++if __name__=='__main__':
++    my_read('d.txt')
+\ No newline at end of file
+Index: ../../py学习/py_study/字典生成式.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/字典生成式.py b/../../py学习/py_study/字典生成式.py
+new file mode 100644
+--- /dev/null	(date 1724745557807)
++++ b/../../py学习/py_study/字典生成式.py	(date 1724745557807)
+@@ -0,0 +1,10 @@
++import random
++d={item:random.randint(1,100) for item in range(4) }
++print(d)
++
++#创建两个列表
++lst=[1001,1002,1003]
++lst2=['陈梅梅','王一一','李丽丽']
++
++d={key:value for key,value in zip(lst,lst2)}
++print(d)
+\ No newline at end of file
+Index: ../../py学习/py_study_socket/UDP的接收方.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study_socket/UDP的接收方.py b/../../py学习/py_study_socket/UDP的接收方.py
+new file mode 100644
+--- /dev/null	(date 1725976504026)
++++ b/../../py学习/py_study_socket/UDP的接收方.py	(date 1725976504026)
+@@ -0,0 +1,20 @@
++from socket import socket,AF_INET,SOCK_DGRAM
++
++recv_socket=socket(AF_INET,SOCK_DGRAM)
++
++recv_socket.bind(('127.0.0.1',666))
++
++recv_data,addr=recv_socket.recvfrom(1024)
++print('接收到的数据为：',recv_data.decode('utf-8'))
++
++data=input('请输入要回复的数据：')
++
++recv_socket.sendto(data.encode('utf-8'),addr)
++
++recv_socket.close()
++
++
++
++
++
++
+Index: ../../py学习/py_study/weather.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/weather.py b/../../py学习/py_study/weather.py
+new file mode 100644
+--- /dev/null	(date 1725672833725)
++++ b/../../py学习/py_study/weather.py	(date 1725672833725)
+@@ -0,0 +1,23 @@
++import re
++
++import requests
++
++#定义函数
++def get_html():
++    url='https://www.weather.com.cn/weather1d/101010100.shtml' #爬虫打开的浏览器上的网页
++    resp=requests.get(url) #打开浏览器并打开网址
++
++    #设置一下编码格式
++    resp.encoding='utf-8'
++    return resp.text
++
++def parse_html(html_str):
++    city=re.findall('<span class="name">([\u4e00-\u9fa5]*)</span>',html_str)
++    weather=re.findall('<span class="weather">([\u4e00-\u9fa5]*)</span>',html_str)
++    wd=re.findall('<span class="wd">(.*)</span>',html_str)
++    zs=re.findall('<span class="zs">([\u4e00-\u9fa5]*)</span>',html_str)
++    lst=[]
++    #zip打包
++    for a,b,c,d in zip(city,weather,wd,zs):
++        lst.append([a,b,c,d])
++    return lst
+Index: ../../py学习/py_study/函数的定义及调用.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/函数的定义及调用.py b/../../py学习/py_study/函数的定义及调用.py
+new file mode 100644
+--- /dev/null	(date 1725001434758)
++++ b/../../py学习/py_study/函数的定义及调用.py	(date 1725001434758)
+@@ -0,0 +1,8 @@
++def get_sum(num):
++    s=0
++    for i in range(num+1):
++        s+=i
++    print(f'1到{num}之间的累加和为{s}')
++
++#函数的调用
++get_sum(10)
+\ No newline at end of file
+Index: ../../py学习/py_study/示例.将爬取的景区天气数据存储到excel文件中.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study/示例.将爬取的景区天气数据存储到excel文件中.py b/../../py学习/py_study/示例.将爬取的景区天气数据存储到excel文件中.py
+new file mode 100644
+--- /dev/null	(date 1725674440076)
++++ b/../../py学习/py_study/示例.将爬取的景区天气数据存储到excel文件中.py	(date 1725674440076)
+@@ -0,0 +1,15 @@
++import weather
++import openpyxl
++
++html_str=weather.get_html() #发请求，得响应结果
++lst=weather.parse_html(html_str) #解析数据
++
++#创建一个新的Excel工作簿
++workbook=openpyxl.Workbook() #创始对象
++# 在Excel文件中创建工作表
++sheet=workbook.create_sheet('景区天气')
++#向工作表中添加数据
++for item in lst:
++    sheet.append(item) #一次添加一行
++
++workbook.save('景区天气.xlsx')
+\ No newline at end of file
+Index: ../../py学习/py_study_socket/TCP多次通信客户端的代码.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study_socket/TCP多次通信客户端的代码.py b/../../py学习/py_study_socket/TCP多次通信客户端的代码.py
+new file mode 100644
+--- /dev/null	(date 1725974865802)
++++ b/../../py学习/py_study_socket/TCP多次通信客户端的代码.py	(date 1725974865802)
+@@ -0,0 +1,19 @@
++import socket
++
++client_socket=socket.socket()
++
++client_socket.connect(('127.0.0.1',888))
++print('---------------已建立服务器连接-----------------')
++
++info=''
++while info!='bye':
++    send_data=input('请客户端输入要发送的数据：')
++    client_socket.send(send_data.encode('utf-8'))
++
++    if send_data=='bye':
++        break
++
++    info=client_socket.recv(1024).decode('utf-8')
++    print('收到服务器的响应数据：',info)
++
++client_socket.close()
+\ No newline at end of file
+Index: ../../py学习/py_study_socket/客服人员.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../py学习/py_study_socket/客服人员.py b/../../py学习/py_study_socket/客服人员.py
+new file mode 100644
+--- /dev/null	(date 1726052018856)
++++ b/../../py学习/py_study_socket/客服人员.py	(date 1726052018856)
+@@ -0,0 +1,15 @@
++from socket import socket,AF_INET,SOCK_DGRAM
++
++recv_socket=socket(AF_INET,SOCK_DGRAM)
++
++recv_socket.bind(('127.0.0.1',8888))
++
++while True:
++    recv_data,addr=recv_socket.recvfrom(1024)
++    print('客户说：',recv_data.decode('utf-8'))
++    if recv_data.decode('utf-8')=='bye':
++        break
++    data=input('客服回：')
++    recv_socket.sendto(data.encode('utf-8'),addr)
++
++recv_socket.close()
+\ No newline at end of file
