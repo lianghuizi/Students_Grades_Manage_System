@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="728f7fac-473e-4749-b263-34896b523aff" name="Changes" comment="Py源码" />
+    <list default="true" id="728f7fac-473e-4749-b263-34896b523aff" name="Changes" comment="Py源码">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,7 +38,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory"><![CDATA[{
   "lastFilter": {
@@ -42,7 +51,7 @@
   </component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
-    "url": "https://github.com/lianghuizi/Grades_System.git",
+    "url": "https://github.com/lianghuizi/Students_Grades_Manage_System.git",
     "accountId": "4b20eb5e-7645-4c75-a549-b8916f830a7a"
   }
 }]]></component>
@@ -50,6 +59,7 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="2npXyCznda6VU7YvRoehUXk1wqm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -250,7 +260,7 @@
       <workItem from="1730274046048" duration="1327000" />
       <workItem from="1730556504246" duration="3198000" />
       <workItem from="1730712409936" duration="2903000" />
-      <workItem from="1731371514420" duration="18647000" />
+      <workItem from="1731371514420" duration="20605000" />
     </task>
     <task id="LOCAL-00001" summary="提交了吗">
       <option name="closed" value="true" />
